@@ -8,20 +8,16 @@ public class Player_Stats : MonoBehaviour
     public Text expText, levelText;
     public Slider expSlider;
     public Text[] fishCountTexts = new Text[36];
-    public Text goldText; // 현재 골드 표시용 Text
-
+    public Text goldText;
 
     [Range(0, 3)]
-    public int equippedRodIndex = 0; // 인스펙터에서 0~3 사이 숫자 선택
-    // Bamboo_fishing_rod = 0
-    // Old_fishing_rod = 1
-    // Iron_fishing_rod = 2
-    // Gold_fishing_rod = 3
-
+    public int equippedRodIndex = 0; // 0 = Bamboo, 1 = Old, 2 = Iron, 3 = Gold
     public int gold = 100000;
 
     private int level = 1, exp = 0, maxExp = 10;
     private bool isFishing = false;
+    private Coroutine fishingRoutine;
+    private int previousRodIndex = -1; // 추가: 낚싯대 변경 감지용
 
     private readonly string[] rodNames = {
         "Bamboo_fishing_rod",
@@ -37,30 +33,47 @@ public class Player_Stats : MonoBehaviour
         UpdateRod();
         UpdateExpUI();
         UpdateGoldUI();
-
     }
 
     void Update()
     {
-        // 낚싯대 인덱스 변경 시 자동 반영
-        UpdateRod();
+        UpdateRod(); // 낚싯대 변경 감지
 
         if (characterAnimator.GetCurrentAnimatorStateInfo(0).IsName("Fishing"))
             characterAnimator.SetInteger("Fish", 0);
 
         if (!isFishing && (Input.GetMouseButtonDown(0) || Input.touchCount > 0))
-            StartCoroutine(FishingProcess());
+            fishingRoutine = StartCoroutine(FishingProcess());
     }
 
     void UpdateGoldUI()
     {
-        goldText.text = gold.ToString(); // 골드를 텍스트로 표시
+        goldText.text = gold.ToString();
     }
 
     void UpdateRod()
     {
         equippedRodIndex = Mathf.Clamp(equippedRodIndex, 0, rodNames.Length - 1);
-        characterAnimator.SetInteger("Fishing_rod", equippedRodIndex); // 애니메이터 파라미터 업데이트
+        characterAnimator.SetInteger("Fishing_rod", equippedRodIndex);
+
+        // 낚싯대 변경 시 낚시 중단
+        if (previousRodIndex != equippedRodIndex)
+        {
+            if (isFishing && fishingRoutine != null)
+            {
+                StopCoroutine(fishingRoutine);
+                isFishing = false;
+            }
+
+            previousRodIndex = equippedRodIndex;
+        }
+
+        // Animator 레이어 가중치 조절
+        for (int i = 1; i <= 4; i++)
+        {
+            float weight = (i - 1 == equippedRodIndex) ? 1f : 0f;
+            characterAnimator.SetLayerWeight(i, weight);
+        }
     }
 
     float GetRodAnimationTime() => rodTimes[equippedRodIndex];
@@ -71,7 +84,16 @@ public class Player_Stats : MonoBehaviour
         characterAnimator.SetTrigger("Touched");
         characterAnimator.SetInteger("Fish", 0);
 
-        yield return new WaitForSeconds(GetRodAnimationTime());
+        float time = GetRodAnimationTime();
+        float elapsed = 0f;
+
+        // 낚시 진행 시간 체크
+        while (elapsed < time)
+        {
+            if (!isFishing) yield break;
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
 
         int fishType = GetFishByLevel();
         characterAnimator.SetInteger("Fish", fishType);
@@ -83,7 +105,6 @@ public class Player_Stats : MonoBehaviour
     int GetFishByLevel()
     {
         float rand = Random.Range(0f, 100f);
-
         if (level <= 9) return rand < 97 ? 3 : rand < 99 ? 2 : 1;
         if (level <= 13) return rand < 90 ? 3 : rand < 98 ? 2 : 1;
         if (level <= 16) return rand < 80 ? 3 : rand < 95 ? 2 : 1;
@@ -98,19 +119,15 @@ public class Player_Stats : MonoBehaviour
         int size;
         int expGained;
 
-        if (fishType == 3) { size = 0; expGained = 1; }      // 소형
-        else if (fishType == 2) { size = 1; expGained = 3; } // 중형
-        else { size = 2; expGained = 10; }                   // 대형
+        if (fishType == 3) { size = 0; expGained = 1; }
+        else if (fishType == 2) { size = 1; expGained = 3; }
+        else { size = 2; expGained = 10; }
 
         exp += expGained;
 
-        // 0~11번 사이에서 물고기 종류 하나 랜덤 선택
         int randomFishIndex = Random.Range(0, 12);
-
-        // 텍스트 인덱스 계산: 종류 * 3 + 크기
         int textIndex = randomFishIndex * 3 + size;
 
-        //  현재 텍스트 숫자를 읽고 +1 하기
         int currentCount = int.Parse(fishCountTexts[textIndex].text);
         currentCount++;
         fishCountTexts[textIndex].text = currentCount.ToString();
@@ -118,7 +135,6 @@ public class Player_Stats : MonoBehaviour
         while (exp >= maxExp) LevelUp();
         UpdateExpUI();
     }
-
 
     void LevelUp()
     {
@@ -143,7 +159,6 @@ public class Player_Stats : MonoBehaviour
     {
         if (index < 0 || index >= rodNames.Length) return;
 
-        // 이미 더 좋은 낚싯대를 샀다면 낮은 등급은 구매 불가
         if (index < equippedRodIndex)
         {
             Debug.Log("더 낮은 등급의 낚싯대는 다시 구매할 수 없습니다!");
@@ -158,6 +173,12 @@ public class Player_Stats : MonoBehaviour
 
         if (gold >= price)
         {
+            if (isFishing && fishingRoutine != null)
+            {
+                StopCoroutine(fishingRoutine);
+                isFishing = false;
+            }
+
             gold -= price;
             equippedRodIndex = index;
             UpdateRod();
@@ -180,15 +201,13 @@ public class Player_Stats : MonoBehaviour
         if (count <= 0) return;
 
         int price = 0;
-        if (index < 12) price = 50;       // 소형
-        else if (index < 24) price = 100; // 중형
-        else price = 300;                 // 대형
+        if (index < 12) price = 50;
+        else if (index < 24) price = 100;
+        else price = 300;
 
         gold += price;
         countText.text = (count - 1).ToString();
         UpdateGoldUI();
         Debug.Log($"[{index + 1}번 슬롯 판매] +{price}원! 현재 골드: {gold}");
     }
-
-
 }
