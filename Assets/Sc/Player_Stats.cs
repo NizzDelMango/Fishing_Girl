@@ -132,6 +132,8 @@ public class Player_Stats : MonoBehaviour
         if (level == 28) return rand < 35.0f ? 3 : rand < 77.0f ? 2 : 1;
         if (level == 29) return rand < 30.0f ? 3 : rand < 75.0f ? 2 : 1;
         if (level == 30) return rand < 25.0f ? 3 : rand < 75.0f ? 2 : 1;
+
+        return 3;
     }
 
     void GainExp(int fishType)
