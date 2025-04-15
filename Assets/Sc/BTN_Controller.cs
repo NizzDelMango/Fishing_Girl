@@ -20,6 +20,7 @@ public class BTN_Controller : MonoBehaviour
         inventoryButton.onClick.AddListener(ToggleInventory);
 
         storePanel.SetActive(false);
+        bucketPanel.SetActive(false);
         inventoryPanel.SetActive(false);
     }
 
@@ -38,7 +39,7 @@ public class BTN_Controller : MonoBehaviour
     {
         bool isActive = bucketPanel.activeSelf;
         bucketPanel.SetActive(!isActive);
-        if(isActive)
+        if(!isActive)
         {
             storePanel.SetActive(false);
             inventoryPanel.SetActive(false);
