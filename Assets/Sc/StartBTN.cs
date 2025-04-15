@@ -14,7 +14,7 @@ public class StartBTN : MonoBehaviour
 
     void ToggleStart()
     {
-        SceneManager.LoadScene("Test");
+        SceneManager.LoadScene("InGameScene");
     }
     // Update is called once per frame
     void Update()
