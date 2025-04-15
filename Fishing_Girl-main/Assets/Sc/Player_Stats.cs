@@ -19,15 +19,11 @@ public class Player_Stats : MonoBehaviour
     private int level = 1, exp = 0, maxExp = 10;
     private bool isFishing = false;
     private Coroutine fishingRoutine;
-    private int previousRodIndex = -1; // 추가: 낚싯대 변경 감지용
+    private int previousRodIndex = -1;
 
     private readonly string[] rodNames = {
-        "Bamboo_fishing_rod",
-        "Old_fishing_rod",
-        "Iron_fishing_rod",
-        "Master_fishing_rod"
+        "Bamboo_fishing_rod", "Old_fishing_rod", "Iron_fishing_rod", "Master_fishing_rod"
     };
-
     private float[] rodTimes = { 10f, 9f, 7f, 5f };
 
     void Start()
@@ -39,7 +35,7 @@ public class Player_Stats : MonoBehaviour
 
     void Update()
     {
-        UpdateRod(); // 낚싯대 변경 감지
+        UpdateRod();
 
         if (characterAnimator.GetCurrentAnimatorStateInfo(0).IsName("Fishing"))
             characterAnimator.SetInteger("Fish", 0);
@@ -48,17 +44,13 @@ public class Player_Stats : MonoBehaviour
             fishingRoutine = StartCoroutine(FishingProcess());
     }
 
-    void UpdateGoldUI()
-    {
-        goldText.text = gold.ToString();
-    }
+    void UpdateGoldUI() => goldText.text = gold.ToString();
 
     void UpdateRod()
     {
         equippedRodIndex = Mathf.Clamp(equippedRodIndex, 0, rodNames.Length - 1);
         characterAnimator.SetInteger("Fishing_rod", equippedRodIndex);
 
-        // 낚싯대 변경 시 낚시 중단
         if (previousRodIndex != equippedRodIndex)
         {
             if (isFishing && fishingRoutine != null)
@@ -70,12 +62,8 @@ public class Player_Stats : MonoBehaviour
             previousRodIndex = equippedRodIndex;
         }
 
-        // Animator 레이어 가중치 조절
         for (int i = 1; i <= 4; i++)
-        {
-            float weight = (i - 1 == equippedRodIndex) ? 1f : 0f;
-            characterAnimator.SetLayerWeight(i, weight);
-        }
+            characterAnimator.SetLayerWeight(i, (i - 1 == equippedRodIndex) ? 1f : 0f);
     }
 
     float GetRodAnimationTime() => rodTimes[equippedRodIndex];
@@ -89,7 +77,6 @@ public class Player_Stats : MonoBehaviour
         float time = GetRodAnimationTime();
         float elapsed = 0f;
 
-        // 낚시 진행 시간 체크
         while (elapsed < time)
         {
             if (!isFishing) yield break;
@@ -97,7 +84,7 @@ public class Player_Stats : MonoBehaviour
             yield return null;
         }
 
-        int fishType = GetFishByLevel();
+        int fishType = GetFishByLevel(); // 1=대, 2=중, 3=소
         characterAnimator.SetInteger("Fish", fishType);
         GainExp(fishType);
 
@@ -151,7 +138,6 @@ public class Player_Stats : MonoBehaviour
         while (exp >= maxExp) LevelUp();
         UpdateExpUI();
     }
-
 
     void LevelUp()
     {
