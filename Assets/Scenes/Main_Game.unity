@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731704, g: 0.13414727, b: 0.121078536, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 13619534}
   - component: {fileID: 13619536}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 23
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 46218086}
   - component: {fileID: 46218088}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 33
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -326,7 +326,7 @@ GameObject:
   - component: {fileID: 61168113}
   - component: {fileID: 61168115}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 24
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -967,7 +967,7 @@ GameObject:
   - component: {fileID: 165299967}
   - component: {fileID: 165299969}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 18
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1846,7 +1846,7 @@ GameObject:
   - component: {fileID: 359021084}
   - component: {fileID: 359021086}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 26
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2333,7 +2333,7 @@ GameObject:
   - component: {fileID: 407864742}
   - component: {fileID: 407864744}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 30
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2579,7 +2579,7 @@ GameObject:
   - component: {fileID: 455605272}
   - component: {fileID: 455605274}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 13
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2674,7 +2674,7 @@ GameObject:
   - component: {fileID: 459519878}
   - component: {fileID: 459519880}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 29
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2872,7 +2872,7 @@ GameObject:
   - component: {fileID: 469858707}
   - component: {fileID: 469858709}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 6
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3309,7 +3309,7 @@ GameObject:
   - component: {fileID: 508627612}
   - component: {fileID: 508627614}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 14
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3537,7 +3537,7 @@ GameObject:
   - component: {fileID: 528604959}
   - component: {fileID: 528604961}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 35
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3632,7 +3632,7 @@ GameObject:
   - component: {fileID: 531380351}
   - component: {fileID: 531380353}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 9
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3896,7 +3896,7 @@ GameObject:
   - component: {fileID: 636229226}
   - component: {fileID: 636229228}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 2
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4124,7 +4124,7 @@ GameObject:
   - component: {fileID: 665236816}
   - component: {fileID: 665236818}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 10
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5052,7 +5052,7 @@ GameObject:
   - component: {fileID: 789531873}
   - component: {fileID: 789531875}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 11
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5496,7 +5496,7 @@ GameObject:
   - component: {fileID: 917239896}
   - component: {fileID: 917239898}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 22
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5878,7 +5878,7 @@ GameObject:
   - component: {fileID: 972754020}
   - component: {fileID: 972754022}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 4
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6106,7 +6106,7 @@ GameObject:
   - component: {fileID: 1018245442}
   - component: {fileID: 1018245444}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 16
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6201,7 +6201,7 @@ GameObject:
   - component: {fileID: 1047385352}
   - component: {fileID: 1047385354}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 31
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6345,7 +6345,7 @@ GameObject:
   - component: {fileID: 1055977663}
   - component: {fileID: 1055977665}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 28
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6610,7 +6610,7 @@ GameObject:
   - component: {fileID: 1084471643}
   - component: {fileID: 1084471645}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 20
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6838,7 +6838,7 @@ GameObject:
   - component: {fileID: 1106062852}
   - component: {fileID: 1106062854}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 17
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7066,7 +7066,7 @@ GameObject:
   - component: {fileID: 1196455824}
   - component: {fileID: 1196455826}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 27
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7166,7 +7166,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1204361976
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8352,7 +8352,7 @@ GameObject:
   - component: {fileID: 1270922674}
   - component: {fileID: 1270922676}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 8
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9160,40 +9160,40 @@ MonoBehaviour:
   expSlider: {fileID: 369425704}
   fishCountTexts:
   - {fileID: 1927167572}
-  - {fileID: 1673370802}
-  - {fileID: 469858707}
-  - {fileID: 531380351}
-  - {fileID: 1578389417}
-  - {fileID: 2012454269}
-  - {fileID: 165299967}
-  - {fileID: 1930616942}
-  - {fileID: 61168113}
-  - {fileID: 1196455824}
-  - {fileID: 407864742}
-  - {fileID: 46218086}
   - {fileID: 1609421129}
-  - {fileID: 972754020}
-  - {fileID: 2028873140}
-  - {fileID: 665236816}
-  - {fileID: 455605272}
-  - {fileID: 1018245442}
-  - {fileID: 1628673310}
-  - {fileID: 917239896}
-  - {fileID: 1509045121}
-  - {fileID: 1055977663}
-  - {fileID: 1047385352}
-  - {fileID: 1857208377}
   - {fileID: 636229226}
+  - {fileID: 1673370802}
+  - {fileID: 972754020}
   - {fileID: 1863885592}
+  - {fileID: 469858707}
+  - {fileID: 2028873140}
   - {fileID: 1270922674}
+  - {fileID: 531380351}
+  - {fileID: 665236816}
   - {fileID: 789531873}
+  - {fileID: 1578389417}
+  - {fileID: 455605272}
   - {fileID: 508627612}
+  - {fileID: 2012454269}
+  - {fileID: 1018245442}
   - {fileID: 1106062852}
+  - {fileID: 165299967}
+  - {fileID: 1628673310}
   - {fileID: 1084471643}
+  - {fileID: 1930616942}
+  - {fileID: 917239896}
   - {fileID: 13619534}
+  - {fileID: 61168113}
+  - {fileID: 1509045121}
   - {fileID: 359021084}
+  - {fileID: 1196455824}
+  - {fileID: 1055977663}
   - {fileID: 459519878}
+  - {fileID: 407864742}
+  - {fileID: 1047385352}
   - {fileID: 1832149222}
+  - {fileID: 46218086}
+  - {fileID: 1857208377}
   - {fileID: 528604959}
   goldText: {fileID: 1663000080}
   equippedRodIndex: 0
@@ -9492,7 +9492,7 @@ GameObject:
   - component: {fileID: 1509045121}
   - component: {fileID: 1509045123}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 25
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9974,7 +9974,7 @@ GameObject:
   - component: {fileID: 1578389417}
   - component: {fileID: 1578389419}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 12
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10281,7 +10281,7 @@ GameObject:
   - component: {fileID: 1609421129}
   - component: {fileID: 1609421131}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 1
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10376,7 +10376,7 @@ GameObject:
   - component: {fileID: 1628673310}
   - component: {fileID: 1628673312}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 19
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10550,7 +10550,7 @@ GameObject:
   - component: {fileID: 1673370802}
   - component: {fileID: 1673370804}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 3
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11366,7 +11366,7 @@ GameObject:
   - component: {fileID: 1832149222}
   - component: {fileID: 1832149224}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 32
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11540,7 +11540,7 @@ GameObject:
   - component: {fileID: 1857208377}
   - component: {fileID: 1857208379}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 34
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11635,7 +11635,7 @@ GameObject:
   - component: {fileID: 1863885592}
   - component: {fileID: 1863885594}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 5
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11863,7 +11863,7 @@ GameObject:
   - component: {fileID: 1927167572}
   - component: {fileID: 1927167574}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 0
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11958,7 +11958,7 @@ GameObject:
   - component: {fileID: 1930616942}
   - component: {fileID: 1930616944}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 21
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12186,7 +12186,7 @@ GameObject:
   - component: {fileID: 2012454269}
   - component: {fileID: 2012454271}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 15
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12281,7 +12281,7 @@ GameObject:
   - component: {fileID: 2028873140}
   - component: {fileID: 2028873142}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 7
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

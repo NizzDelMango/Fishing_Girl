@@ -4,14 +4,16 @@ using UnityEngine.UI;
 
 public class Player_Stats : MonoBehaviour
 {
+    [Header("UI")]
     public Animator characterAnimator;
     public Text expText, levelText;
     public Slider expSlider;
-    public Text[] fishCountTexts = new Text[36];
+    public Text[] fishCountTexts = new Text[36]; // 12종 * 3크기 = 36칸
     public Text goldText;
 
+    [Header("Stats")]
     [Range(0, 3)]
-    public int equippedRodIndex = 0; // 0 = Bamboo, 1 = Old, 2 = Iron, 3 = Gold
+    public int equippedRodIndex = 0;
     public int gold = 100000;
 
     private int level = 1, exp = 0, maxExp = 10;
@@ -30,9 +32,6 @@ public class Player_Stats : MonoBehaviour
 
     void Start()
     {
-        level = 1;
-        exp = 0;
-        maxExp = 10;
         UpdateRod();
         UpdateExpUI();
         UpdateGoldUI();
@@ -117,93 +116,89 @@ public class Player_Stats : MonoBehaviour
         if (level == 8) return rand < 94.9f ? 3 : rand < 99.9f ? 2 : 1;
         if (level == 9) return rand < 93.9f ? 3 : rand < 98.9f ? 2 : 1;
         if (level == 10) return rand < 92.9f ? 3 : rand < 98.9f ? 2 : 1;
-        if (level == 11 || level == 12 || level == 13) return rand < 90.0f ? 3 : rand < 98.0f ? 2 : 1;
-        if (level == 14) return rand < 80.0f ? 3 : rand < 95.0f ? 2 : 1;
-        if (level == 15 || level == 16 || level == 17) return rand < 70.0f ? 3 : rand < 95.0f ? 2 : 1;
-        if (level == 18 || level == 19) return rand < 65.0f ? 3 : rand < 90.0f ? 2 : 1;
-        if (level == 20) return rand < 64.0f ? 3 : rand < 89.0f ? 2 : 1;
-        if (level == 21) return rand < 63.0f ? 3 : rand < 88.0f ? 2 : 1;
-        if (level == 22) return rand < 60.0f ? 3 : rand < 88.0f ? 2 : 1;
-        if (level == 23) return rand < 58.0f ? 3 : rand < 88.0f ? 2 : 1;
-        if (level == 24) return rand < 55.0f ? 3 : rand < 87.0f ? 2 : 1;
-        if (level == 25) return rand < 50.0f ? 3 : rand < 85.0f ? 2 : 1;
-        if (level == 26) return rand < 45.0f ? 3 : rand < 83.0f ? 2 : 1;
-        if (level == 27) return rand < 60.0f ? 3 : rand < 80.0f ? 2 : 1;
-        if (level == 28) return rand < 35.0f ? 3 : rand < 77.0f ? 2 : 1;
-        if (level == 29) return rand < 30.0f ? 3 : rand < 75.0f ? 2 : 1;
-        if (level == 30) return rand < 25.0f ? 3 : rand < 75.0f ? 2 : 1;
-
+        if (level <= 13) return rand < 90f ? 3 : rand < 98f ? 2 : 1;
+        if (level == 14) return rand < 80f ? 3 : rand < 95f ? 2 : 1;
+        if (level <= 17) return rand < 70f ? 3 : rand < 95f ? 2 : 1;
+        if (level <= 19) return rand < 65f ? 3 : rand < 90f ? 2 : 1;
+        if (level == 20) return rand < 64f ? 3 : rand < 89f ? 2 : 1;
+        if (level == 21) return rand < 63f ? 3 : rand < 88f ? 2 : 1;
+        if (level == 22) return rand < 60f ? 3 : rand < 88f ? 2 : 1;
+        if (level == 23) return rand < 58f ? 3 : rand < 88f ? 2 : 1;
+        if (level == 24) return rand < 55f ? 3 : rand < 87f ? 2 : 1;
+        if (level == 25) return rand < 50f ? 3 : rand < 85f ? 2 : 1;
+        if (level == 26) return rand < 45f ? 3 : rand < 83f ? 2 : 1;
+        if (level == 27) return rand < 60f ? 3 : rand < 80f ? 2 : 1;
+        if (level == 28) return rand < 35f ? 3 : rand < 77f ? 2 : 1;
+        if (level == 29) return rand < 30f ? 3 : rand < 75f ? 2 : 1;
+        if (level == 30) return rand < 25f ? 3 : rand < 75f ? 2 : 1;
         return 3;
     }
 
     void GainExp(int fishType)
     {
-        int size;
-        int expGained;
-
-        if (fishType == 3) { size = 0; expGained = 1; }
-        else if (fishType == 2) { size = 1; expGained = 3; }
-        else { size = 2; expGained = 10; }
+        int size = fishType == 3 ? 0 : fishType == 2 ? 1 : 2;
+        int expGained = fishType == 3 ? 1 : fishType == 2 ? 3 : 10;
 
         exp += expGained;
 
-        int randomFishIndex = Random.Range(0, 12);
-        int textIndex = randomFishIndex * 3 + size;
+        // 랜덤한 물고기 종류 결정 (0~11)
+        int fishIndex = Random.Range(0, 12);
+        int slotIndex = fishIndex * 3 + size; // fishCountTexts 인덱스 계산
 
-        int currentCount = int.Parse(fishCountTexts[textIndex].text);
-        currentCount++;
-        fishCountTexts[textIndex].text = currentCount.ToString();
+        int currentCount = int.Parse(fishCountTexts[slotIndex].text);
+        fishCountTexts[slotIndex].text = (++currentCount).ToString();
 
         while (exp >= maxExp) LevelUp();
         UpdateExpUI();
     }
 
+
     void LevelUp()
-{
-    if (level >= 30)
     {
-        exp = maxExp; // 경험치 풀로 고정
-        return;       // 레벨업 중단
+        if (level >= 30)
+        {
+            exp = maxExp;
+            return;
+        }
+
+        exp -= maxExp;
+        level++;
+
+        switch (level)
+        {
+            case 2: maxExp = 25; break;
+            case 3: maxExp = 50; break;
+            case 4: maxExp = 80; break;
+            case 5: maxExp = 115; break;
+            case 6: maxExp = 150; break;
+            case 7: maxExp = 200; break;
+            case 8: maxExp = 255; break;
+            case 9: maxExp = 320; break;
+            case 10: maxExp = 400; break;
+            case 11: maxExp = 500; break;
+            case 12: maxExp = 610; break;
+            case 13: maxExp = 750; break;
+            case 14: maxExp = 1000; break;
+            case 15: maxExp = 1500; break;
+            case 16: maxExp = 2800; break;
+            case 17: maxExp = 4200; break;
+            case 18: maxExp = 5800; break;
+            case 19: maxExp = 7000; break;
+            case 20: maxExp = 9000; break;
+            case 21: maxExp = 11000; break;
+            case 22: maxExp = 13500; break;
+            case 23: maxExp = 16500; break;
+            case 24: maxExp = 20000; break;
+            case 25: maxExp = 35000; break;
+            case 26: maxExp = 30000; break;
+            case 27: maxExp = 36000; break;
+            case 28: maxExp = 43000; break;
+            case 29: maxExp = 50000; break;
+            case 30: maxExp = 0; break;
+        }
+
+        UpdateExpUI();
     }
-
-    exp -= maxExp;
-    level++;
-
-    switch (level)
-    {
-        case 2:  maxExp = 25; break;
-        case 3:  maxExp = 50; break;
-        case 4:  maxExp = 80; break;
-        case 5:  maxExp = 115; break;
-        case 6:  maxExp = 150; break;
-        case 7:  maxExp = 200; break;
-        case 8:  maxExp = 255; break;
-        case 9:  maxExp = 320; break;
-        case 10: maxExp = 400; break;
-        case 11: maxExp = 500; break;
-        case 12: maxExp = 610; break;
-        case 13: maxExp = 750; break;
-        case 14: maxExp = 1000; break;
-        case 15: maxExp = 1500; break;
-        case 16: maxExp = 2800; break;
-        case 17: maxExp = 4200; break;
-        case 18: maxExp = 5800; break;
-        case 19: maxExp = 7000; break;
-        case 20: maxExp = 9000; break;
-        case 21: maxExp = 11000; break;
-        case 22: maxExp = 13500; break;
-        case 23: maxExp = 16500; break;
-        case 24: maxExp = 20000; break;
-        case 25: maxExp = 35000; break;
-        case 26: maxExp = 30000; break;
-        case 27: maxExp = 36000; break;
-        case 28: maxExp = 43000; break;
-        case 29: maxExp = 50000; break;
-        case 30: maxExp = 0; break; // 30레벨에서 더 이상 경험치 필요 없음
-    }
-
-    UpdateExpUI();
-}
 
     void UpdateExpUI()
     {
@@ -215,18 +210,7 @@ public class Player_Stats : MonoBehaviour
     public void BuyFishingRod(int index, int price)
     {
         if (index < 0 || index >= rodNames.Length) return;
-
-        if (index < equippedRodIndex)
-        {
-            Debug.Log("더 낮은 등급의 낚싯대는 다시 구매할 수 없습니다!");
-            return;
-        }
-
-        if (index == equippedRodIndex)
-        {
-            Debug.Log("이미 이 낚싯대를 사용 중입니다!");
-            return;
-        }
+        if (index < equippedRodIndex || index == equippedRodIndex) return;
 
         if (gold >= price)
         {
@@ -240,31 +224,26 @@ public class Player_Stats : MonoBehaviour
             equippedRodIndex = index;
             UpdateRod();
             UpdateGoldUI();
-            Debug.Log($"{rodNames[index]} 낚싯대를 구매했습니다. 남은 골드: {gold}");
+            Debug.Log($"{rodNames[index]} 낚싯대 구매 완료!");
         }
         else
         {
-            Debug.Log("골드가 부족합니다!");
+            Debug.Log("골드 부족!");
         }
     }
 
     public void SellFishByButtonIndex(int index)
     {
-        Debug.Log($"판매 버튼 클릭됨! index = {index}");
-
         Text countText = fishCountTexts[index];
         int count = int.Parse(countText.text);
-
         if (count <= 0) return;
 
-        int price = 0;
-        if (index < 12) price = 50;
-        else if (index < 24) price = 100;
-        else price = 300;
+        // 크기 구분: index % 3 → 0=소, 1=중, 2=대
+        int price = index % 3 == 0 ? 50 : index % 3 == 1 ? 100 : 300;
 
         gold += price;
         countText.text = (count - 1).ToString();
         UpdateGoldUI();
-        Debug.Log($"[{index + 1}번 슬롯 판매] +{price}원! 현재 골드: {gold}");
+        Debug.Log($"[{index + 1}번 슬롯 판매] +{price} 골드!");
     }
 }
