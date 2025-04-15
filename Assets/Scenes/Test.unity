@@ -1666,10 +1666,10 @@ RectTransform:
   m_Children:
   - {fileID: 330453514}
   - {fileID: 1204361976}
+  - {fileID: 1372651369}
   - {fileID: 1535415439}
   - {fileID: 1241350744}
   - {fileID: 1116396436}
-  - {fileID: 1372651369}
   m_Father: {fileID: 1059858827}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1753,8 +1753,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   storePanel: {fileID: 330453513}
+  bucketPanel: {fileID: 1372651368}
   inventoryPanel: {fileID: 1204361975}
   storeButton: {fileID: 1535415440}
+  bucketButton: {fileID: 1116396438}
   inventoryButton: {fileID: 1241350745}
 --- !u!1 &359021082
 GameObject:
@@ -7209,7 +7211,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1204361976
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8764,7 +8766,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1372651369
 RectTransform:
   m_ObjectHideFlags: 0
