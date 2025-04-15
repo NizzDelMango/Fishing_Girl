@@ -31,12 +31,7 @@ public class Player_Stats : MonoBehaviour
         UpdateRod();
         UpdateExpUI();
         UpdateGoldUI();
-
-        // 게임 시작 시 자동 낚시 시작
-        if (!isFishing)
-            fishingRoutine = StartCoroutine(AutoFishingLoop());
     }
-
 
     void Update()
     {
@@ -45,18 +40,8 @@ public class Player_Stats : MonoBehaviour
         if (characterAnimator.GetCurrentAnimatorStateInfo(0).IsName("Fishing"))
             characterAnimator.SetInteger("Fish", 0);
 
-        // 터치 입력 삭제
-        // if (!isFishing && (Input.GetMouseButtonDown(0) || Input.touchCount > 0))
-        //     fishingRoutine = StartCoroutine(FishingProcess());
-    }
-
-    IEnumerator AutoFishingLoop()
-    {
-        while (true)
-        {
-            yield return StartCoroutine(FishingProcess());
-            yield return new WaitForSeconds(0.5f); // 낚시 간 텀
-        }
+        if (!isFishing && (Input.GetMouseButtonDown(0) || Input.touchCount > 0))
+            fishingRoutine = StartCoroutine(FishingProcess());
     }
 
     void UpdateGoldUI() => goldText.text = gold.ToString();
