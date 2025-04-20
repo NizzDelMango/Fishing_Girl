@@ -11,15 +11,14 @@ public class Player_Stats : MonoBehaviour
     public Text[] fishCountTexts = new Text[36]; // 12종 * 3크기 = 36칸
     public Text goldText;
 
-    // 🐟 로그 출력용 UI
-    public Text fishLogNameText;         // 이름 (크기)
-    public Image fishLogImage;           // 물고기 이미지
-    public Sprite[] fishSprites = new Sprite[12]; // 12종 물고기 스프라이트
-
     [Header("Stats")]
     [Range(0, 3)]
     public int equippedRodIndex = 0;
     public int gold = 100000;
+
+    [Header("Sound")]
+    public AudioClip Coin_Sound;
+    private AudioSource audioSource;
 
     private int level = 1, exp = 0, maxExp = 10;
     private bool isFishing = false;
@@ -27,17 +26,8 @@ public class Player_Stats : MonoBehaviour
     private int previousRodIndex = -1;
 
     private readonly string[] rodNames = {
-        "Bamboo_fishing_rod",
-        "Old_fishing_rod",
-        "Iron_fishing_rod",
-        "Master_fishing_rod"
+        "Bamboo_fishing_rod", "Old_fishing_rod", "Iron_fishing_rod", "Master_fishing_rod"
     };
-
-    private readonly string[] fishNames = {
-        "붉바리", "광어", "청세치", "방어", "우럭", "도미",
-        "백상아리", "고등어", "전갱이", "멸치", "쥐치", "참치"
-    };
-
     private float[] rodTimes = { 10f, 9f, 7f, 5f };
 
     void Start()
@@ -45,6 +35,12 @@ public class Player_Stats : MonoBehaviour
         UpdateRod();
         UpdateExpUI();
         UpdateGoldUI();
+
+        // AudioSource 초기화
+        audioSource = GetComponent<AudioSource>();
+
+        if (!isFishing)
+            fishingRoutine = StartCoroutine(AutoFishingLoop());
     }
 
     void Update()
@@ -53,15 +49,21 @@ public class Player_Stats : MonoBehaviour
 
         if (characterAnimator.GetCurrentAnimatorStateInfo(0).IsName("Fishing"))
             characterAnimator.SetInteger("Fish", 0);
-
-        if (!isFishing && (Input.GetMouseButtonDown(0) || Input.touchCount > 0))
-            fishingRoutine = StartCoroutine(FishingProcess());
     }
 
-    void UpdateGoldUI()
+    IEnumerator AutoFishingLoop()
     {
-        goldText.text = gold.ToString();
+        while (true)
+        {
+            if (!isFishing)
+                fishingRoutine = StartCoroutine(FishingProcess());
+
+            yield return new WaitUntil(() => !isFishing);
+            yield return new WaitForSeconds(0.5f);
+        }
     }
+
+    void UpdateGoldUI() => goldText.text = gold.ToString();
 
     void UpdateRod()
     {
@@ -70,28 +72,35 @@ public class Player_Stats : MonoBehaviour
 
         if (previousRodIndex != equippedRodIndex)
         {
+            // 낚시 중단
             if (isFishing && fishingRoutine != null)
             {
                 StopCoroutine(fishingRoutine);
                 isFishing = false;
             }
 
+            // Fish 초기화
+            characterAnimator.SetInteger("Fish", 0);
+
+            // 낚싯대 변경 직후 낚시 루프 재시작
+            if (fishingRoutine != null)
+                StopCoroutine(fishingRoutine);
+            fishingRoutine = StartCoroutine(AutoFishingLoop());
+
             previousRodIndex = equippedRodIndex;
         }
 
         for (int i = 1; i <= 4; i++)
-        {
-            float weight = (i - 1 == equippedRodIndex) ? 1f : 0f;
-            characterAnimator.SetLayerWeight(i, weight);
-        }
+            characterAnimator.SetLayerWeight(i, (i - 1 == equippedRodIndex) ? 1f : 0f);
     }
+
+
 
     float GetRodAnimationTime() => rodTimes[equippedRodIndex];
 
     IEnumerator FishingProcess()
     {
         isFishing = true;
-        characterAnimator.SetTrigger("Touched");
         characterAnimator.SetInteger("Fish", 0);
 
         float time = GetRodAnimationTime();
@@ -154,17 +163,6 @@ public class Player_Stats : MonoBehaviour
         int currentCount = int.Parse(fishCountTexts[slotIndex].text);
         fishCountTexts[slotIndex].text = (++currentCount).ToString();
 
-        // 🐟 UI 출력
-        string fishName = fishNames[fishIndex];
-        string sizeName = size == 0 ? "소형" : size == 1 ? "중형" : "대형";
-        string fullLog = $"{fishName} ({sizeName})";
-        fishLogNameText.text = fullLog;
-
-        if (fishIndex >= 0 && fishIndex < fishSprites.Length)
-            fishLogImage.sprite = fishSprites[fishIndex];
-
-        Debug.Log($"잡은 물고기: {fullLog}");
-
         while (exp >= maxExp) LevelUp();
         UpdateExpUI();
     }
@@ -226,7 +224,7 @@ public class Player_Stats : MonoBehaviour
     public void BuyFishingRod(int index, int price)
     {
         if (index < 0 || index >= rodNames.Length) return;
-        if (index < equippedRodIndex || index == equippedRodIndex) return;
+        if (index <= equippedRodIndex) return;
 
         if (gold >= price)
         {
@@ -257,6 +255,13 @@ public class Player_Stats : MonoBehaviour
         int price = index % 3 == 0 ? 50 : index % 3 == 1 ? 100 : 300;
 
         gold += price;
+
+        // 사운드 재생
+        if (Coin_Sound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(Coin_Sound);
+        }
+
         countText.text = (count - 1).ToString();
         UpdateGoldUI();
         Debug.Log($"[{index + 1}번 슬롯 판매] +{price} 골드!");
