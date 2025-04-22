@@ -14,7 +14,7 @@ public class Player_Stats : MonoBehaviour
     [Header("Stats")]
     [Range(0, 3)]
     public int equippedRodIndex = 0;
-    public int gold = 100000;
+    public int gold = 0;
 
     [Header("Sound")]
     public AudioClip Coin_Sound;
