@@ -32,16 +32,25 @@ public class Player_Stats : MonoBehaviour
 
     void Start()
     {
+        level = SaveManager.LoadInt("Level", 1);
+        exp = SaveManager.LoadInt("Exp", 0);
+        gold = SaveManager.LoadInt("Gold", 0);
+        equippedRodIndex = SaveManager.LoadInt("RodIndex", 0);
+
+        int[] loadedFishCounts = SaveManager.LoadFishCounts(fishCountTexts.Length);
+        for (int i = 0; i < fishCountTexts.Length; i++)
+            fishCountTexts[i].text = loadedFishCounts[i].ToString();
+
         UpdateRod();
         UpdateExpUI();
         UpdateGoldUI();
 
-        // AudioSource 초기화
         audioSource = GetComponent<AudioSource>();
 
         if (!isFishing)
             fishingRoutine = StartCoroutine(AutoFishingLoop());
     }
+
 
     void Update()
     {
