@@ -8,20 +8,24 @@ public class BTN_Controller : MonoBehaviour
     public GameObject storePanel;
     public GameObject bucketPanel;
     public GameObject inventoryPanel;
+    public GameObject MenuPanel;
 
     public Button storeButton;
     public Button bucketButton;
     public Button inventoryButton;
+    public Button MenuButton;
 
     void Start()
     {
         storeButton.onClick.AddListener(ToggleStore);
         bucketButton.onClick.AddListener(ToggleBucket);
         inventoryButton.onClick.AddListener(ToggleInventory);
+        MenuButton.onClick.AddListener(ToggleMenu);
 
         storePanel.SetActive(false);
         bucketPanel.SetActive(false);
         inventoryPanel.SetActive(false);
+        MenuPanel.SetActive(false);
     }
 
     void ToggleStore()
@@ -38,13 +42,25 @@ public class BTN_Controller : MonoBehaviour
     void ToggleBucket()
     {
         bool isActive = bucketPanel.activeSelf;
-        bucketPanel.SetActive(!isActive);
-        if(!isActive)
+
+        if (!isActive)
         {
+            bucketPanel.SetActive(true);
             storePanel.SetActive(false);
             inventoryPanel.SetActive(false);
         }
+        else
+        {
+            // 이미 켜져 있으면 애니메이션 Trigger
+            Animator animator = bucketPanel.GetComponent<Animator>();
+            if (animator != null)
+            {
+                animator.SetTrigger("Bucket_Touched");
+            }
+        }
     }
+
+
 
     void ToggleInventory()
     {
@@ -55,5 +71,11 @@ public class BTN_Controller : MonoBehaviour
             storePanel.SetActive(false);
             bucketPanel.SetActive (false);
         }
+    }
+
+    void ToggleMenu()
+    {
+        bool isActive = MenuPanel.activeSelf;
+        MenuPanel.SetActive(!isActive);
     }
 }
