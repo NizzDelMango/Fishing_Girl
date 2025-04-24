@@ -13,6 +13,7 @@ public static class SaveManager
             PlayerPrefs.SetInt("Fish_" + i, fishCounts[i]);
 
         PlayerPrefs.Save();
+        Debug.Log("저장 완료");
     }
 
     public static int LoadInt(string key, int defaultValue = 0)

@@ -59,6 +59,10 @@ public class Player_Stats : MonoBehaviour
         if (characterAnimator.GetCurrentAnimatorStateInfo(0).IsName("Fishing"))
             characterAnimator.SetInteger("Fish", 0);
     }
+    void OnApplicationQuit()
+    {
+        SaveAllPlayerData();
+    }
 
     IEnumerator AutoFishingLoop()
     {
@@ -174,6 +178,8 @@ public class Player_Stats : MonoBehaviour
 
         while (exp >= maxExp) LevelUp();
         UpdateExpUI();
+
+        SaveAllPlayerData();
     }
 
     void LevelUp()
@@ -265,14 +271,23 @@ public class Player_Stats : MonoBehaviour
 
         gold += price;
 
-        // 사운드 재생
         if (Coin_Sound != null && audioSource != null)
-        {
             audioSource.PlayOneShot(Coin_Sound);
-        }
 
         countText.text = (count - 1).ToString();
         UpdateGoldUI();
+
         Debug.Log($"[{index + 1}번 슬롯 판매] +{price} 골드!");
+
+        SaveAllPlayerData();
+    }
+
+    void SaveAllPlayerData()
+    {
+        int[] fishCounts = new int[fishCountTexts.Length];
+        for (int i = 0; i < fishCountTexts.Length; i++)
+            fishCounts[i] = int.Parse(fishCountTexts[i].text);
+
+        SaveManager.SavePlayerData(level, exp, gold, equippedRodIndex, fishCounts);
     }
 }
