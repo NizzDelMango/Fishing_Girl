@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,6 +21,14 @@ public class BTN_Controller : MonoBehaviour
     public Button GuideButton;
     public Button SettingButton;
 
+    // 🎵 추가: BGM, SFX 슬라이더
+    public Slider bgmSlider;
+    public Slider sfxSlider;
+
+    // 🎵 추가: 오디오 소스
+    public AudioSource bgmAudioSource;
+    public AudioSource sfxAudioSource;
+
     void Start()
     {
         storeButton.onClick.AddListener(ToggleStore);
@@ -37,6 +45,18 @@ public class BTN_Controller : MonoBehaviour
         MenuPanel.SetActive(false);
         GuidePanel.SetActive(false);
         SettingPanel.SetActive(false);
+
+        // 🎵 슬라이더 초기화 및 리스너 연결
+        if (bgmSlider != null)
+        {
+            bgmSlider.value = bgmAudioSource.volume;
+            bgmSlider.onValueChanged.AddListener(ChangeBGMVolume);
+        }
+        if (sfxSlider != null)
+        {
+            sfxSlider.value = sfxAudioSource.volume;
+            sfxSlider.onValueChanged.AddListener(ChangeSFXVolume);
+        }
     }
 
     void Update()
@@ -149,5 +169,16 @@ public class BTN_Controller : MonoBehaviour
             MenuPanel.SetActive(false);
             GuidePanel.SetActive(false);
         }
+    }
+
+    // 🎵 추가: 볼륨 조절 함수
+    void ChangeBGMVolume(float volume)
+    {
+        bgmAudioSource.volume = volume;
+    }
+
+    void ChangeSFXVolume(float volume)
+    {
+        sfxAudioSource.volume = volume;
     }
 }
