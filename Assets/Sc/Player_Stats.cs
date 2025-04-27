@@ -8,7 +8,7 @@ public class Player_Stats : MonoBehaviour
     public Animator characterAnimator;
     public Text expText, levelText;
     public Slider expSlider;
-    public Text[] fishCountTexts = new Text[36]; // 12종 * 3크기 = 36칸
+    public Text[] fishCountTexts = new Text[36];
     public Text goldText;
 
     [Header("Stats")]
@@ -17,8 +17,8 @@ public class Player_Stats : MonoBehaviour
     public int gold = 0;
 
     [Header("Sound")]
-    public AudioClip Coin_Sound;
-    private AudioSource audioSource;
+    public GameObject coinSoundObject; // Coin_Sound 오브젝트 연결
+    private AudioSource coinAudioSource;
 
     private int level = 1, exp = 0, maxExp = 10;
     private bool isFishing = false;
@@ -45,12 +45,12 @@ public class Player_Stats : MonoBehaviour
         UpdateExpUI();
         UpdateGoldUI();
 
-        audioSource = GetComponent<AudioSource>();
+        if (coinSoundObject != null)
+            coinAudioSource = coinSoundObject.GetComponent<AudioSource>();
 
         if (!isFishing)
             fishingRoutine = StartCoroutine(AutoFishingLoop());
     }
-
 
     void Update()
     {
@@ -59,6 +59,7 @@ public class Player_Stats : MonoBehaviour
         if (characterAnimator.GetCurrentAnimatorStateInfo(0).IsName("Fishing"))
             characterAnimator.SetInteger("Fish", 0);
     }
+
     void OnApplicationQuit()
     {
         SaveAllPlayerData();
@@ -85,17 +86,14 @@ public class Player_Stats : MonoBehaviour
 
         if (previousRodIndex != equippedRodIndex)
         {
-            // 낚시 중단
             if (isFishing && fishingRoutine != null)
             {
                 StopCoroutine(fishingRoutine);
                 isFishing = false;
             }
 
-            // Fish 초기화
             characterAnimator.SetInteger("Fish", 0);
 
-            // 낚싯대 변경 직후 낚시 루프 재시작
             if (fishingRoutine != null)
                 StopCoroutine(fishingRoutine);
             fishingRoutine = StartCoroutine(AutoFishingLoop());
@@ -106,8 +104,6 @@ public class Player_Stats : MonoBehaviour
         for (int i = 1; i <= 4; i++)
             characterAnimator.SetLayerWeight(i, (i - 1 == equippedRodIndex) ? 1f : 0f);
     }
-
-
 
     float GetRodAnimationTime() => rodTimes[equippedRodIndex];
 
@@ -271,8 +267,8 @@ public class Player_Stats : MonoBehaviour
 
         gold += price;
 
-        if (Coin_Sound != null && audioSource != null)
-            audioSource.PlayOneShot(Coin_Sound);
+        if (coinAudioSource != null)
+            coinAudioSource.Play();
 
         countText.text = (count - 1).ToString();
         UpdateGoldUI();
