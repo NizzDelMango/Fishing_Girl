@@ -9,10 +9,12 @@ public class SetVolume : MonoBehaviour
 
     public void BGMLevel(float sliderValue)
     {
+        float savedSFXVolume = PlayerPrefs.GetFloat("BGM",1.0f);
         mixer.SetFloat("BGM", Mathf.Log10(sliderValue) * 20);
     }
     public void SFXLevel(float sliderValue)
     {
+        float savedSFXVolume = PlayerPrefs.GetFloat("SFX",1.0f);
         mixer.SetFloat("SFX", Mathf.Log10(sliderValue) * 20);
     }
 }

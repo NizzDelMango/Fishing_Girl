@@ -124,7 +124,18 @@ public class BTN_Controller : MonoBehaviour
 
     void ToggleMenu()
     {
-        MenuPanel.SetActive(!MenuPanel.activeSelf);
+        // Guide나 Setting이 열려있으면 끄고 MenuPanel만 열어
+        if (GuidePanel.activeSelf || SettingPanel.activeSelf)
+        {
+            GuidePanel.SetActive(false);
+            SettingPanel.SetActive(false);
+            MenuPanel.SetActive(true);
+        }
+        else
+        {
+            // 그냥 MenuPanel을 토글
+            MenuPanel.SetActive(!MenuPanel.activeSelf);
+        }
     }
 
     void ToggleGuide()
@@ -132,7 +143,7 @@ public class BTN_Controller : MonoBehaviour
         bool isActive = GuidePanel.activeSelf;
         GuidePanel.SetActive(!isActive);
 
-        if (!isActive)
+        if (!isActive) // Guide를 켜는 경우
         {
             MenuPanel.SetActive(false);
             SettingPanel.SetActive(false);
@@ -144,7 +155,7 @@ public class BTN_Controller : MonoBehaviour
         bool isActive = SettingPanel.activeSelf;
         SettingPanel.SetActive(!isActive);
 
-        if (!isActive)
+        if (!isActive) // Setting을 켜는 경우
         {
             MenuPanel.SetActive(false);
             GuidePanel.SetActive(false);
