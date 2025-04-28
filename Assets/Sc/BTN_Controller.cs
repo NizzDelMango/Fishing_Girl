@@ -1,4 +1,4 @@
-ï»¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,12 +21,6 @@ public class BTN_Controller : MonoBehaviour
     public Button GuideButton;
     public Button SettingButton;
 
-    public Slider bgmSlider;
-    public Slider sfxSlider;
-
-    public AudioSource bgmAudioSource;
-    public List<AudioSource> sfxAudioSources;
-
     void Start()
     {
         storeButton.onClick.AddListener(ToggleStore);
@@ -43,27 +37,6 @@ public class BTN_Controller : MonoBehaviour
         MenuPanel.SetActive(false);
         GuidePanel.SetActive(false);
         SettingPanel.SetActive(false);
-
-        // ìŠ¬ë¼ì´ë” ì´ˆê¸°í™”
-        if (bgmSlider != null && bgmAudioSource != null)
-        {
-            float savedBGMVolume = PlayerPrefs.GetFloat("BGMVolume", 0.5f);
-            bgmAudioSource.volume = savedBGMVolume;
-            bgmSlider.value = savedBGMVolume;
-            bgmSlider.onValueChanged.AddListener(ChangeBGMVolume);
-        }
-
-        if (sfxSlider != null && sfxAudioSources != null)
-        {
-            float savedSFXVolume = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
-            foreach (var sfx in sfxAudioSources)
-            {
-                if (sfx != null)
-                    sfx.volume = savedSFXVolume;
-            }
-            sfxSlider.value = savedSFXVolume;
-            sfxSlider.onValueChanged.AddListener(ChangeSFXVolume);
-        }
     }
 
     void Update()
@@ -151,7 +124,7 @@ public class BTN_Controller : MonoBehaviour
 
     void ToggleMenu()
     {
-        // Guideë‚˜ Settingì´ ì—´ë ¤ìˆìœ¼ë©´ ë„ê³  MenuPanelë§Œ ì—´ì–´
+        // Guide³ª SettingÀÌ ¿­·ÁÀÖÀ¸¸é ²ô°í MenuPanel¸¸ ¿­¾î
         if (GuidePanel.activeSelf || SettingPanel.activeSelf)
         {
             GuidePanel.SetActive(false);
@@ -160,7 +133,7 @@ public class BTN_Controller : MonoBehaviour
         }
         else
         {
-            // ê·¸ëƒ¥ MenuPanelì„ í† ê¸€
+            // ±×³É MenuPanelÀ» Åä±Û
             MenuPanel.SetActive(!MenuPanel.activeSelf);
         }
     }
@@ -170,7 +143,7 @@ public class BTN_Controller : MonoBehaviour
         bool isActive = GuidePanel.activeSelf;
         GuidePanel.SetActive(!isActive);
 
-        if (!isActive) // Guideë¥¼ ì¼œëŠ” ê²½ìš°
+        if (!isActive) // Guide¸¦ ÄÑ´Â °æ¿ì
         {
             MenuPanel.SetActive(false);
             SettingPanel.SetActive(false);
@@ -182,28 +155,10 @@ public class BTN_Controller : MonoBehaviour
         bool isActive = SettingPanel.activeSelf;
         SettingPanel.SetActive(!isActive);
 
-        if (!isActive) // Settingì„ ì¼œëŠ” ê²½ìš°
+        if (!isActive) // SettingÀ» ÄÑ´Â °æ¿ì
         {
             MenuPanel.SetActive(false);
             GuidePanel.SetActive(false);
         }
-    }
-
-    void ChangeBGMVolume(float volume)
-    {
-        if (bgmAudioSource != null)
-            bgmAudioSource.volume = volume;
-
-        PlayerPrefs.SetFloat("BGMVolume", volume);
-    }
-
-    void ChangeSFXVolume(float volume)
-    {
-        foreach (var sfx in sfxAudioSources)
-        {
-            if (sfx != null)
-                sfx.volume = volume;
-        }
-        PlayerPrefs.SetFloat("SFXVolume", volume);
     }
 }
