@@ -21,13 +21,11 @@ public class BTN_Controller : MonoBehaviour
     public Button GuideButton;
     public Button SettingButton;
 
-    //  추가: BGM, SFX 슬라이더
     public Slider bgmSlider;
     public Slider sfxSlider;
 
-    //  추가: 오디오 소스
     public AudioSource bgmAudioSource;
-    public List<AudioSource> sfxAudioSources; //  SFX 여러 개 
+    public List<AudioSource> sfxAudioSources;
 
     void Start()
     {
@@ -46,7 +44,7 @@ public class BTN_Controller : MonoBehaviour
         GuidePanel.SetActive(false);
         SettingPanel.SetActive(false);
 
-        // 슬라이더 초기화 및 리스너 연결 (볼륨 저장된 거 불러오기)
+        // 슬라이더 초기화
         if (bgmSlider != null && bgmAudioSource != null)
         {
             float savedBGMVolume = PlayerPrefs.GetFloat("BGMVolume", 0.5f);
@@ -153,7 +151,18 @@ public class BTN_Controller : MonoBehaviour
 
     void ToggleMenu()
     {
-        MenuPanel.SetActive(!MenuPanel.activeSelf);
+        // Guide나 Setting이 열려있으면 끄고 MenuPanel만 열어
+        if (GuidePanel.activeSelf || SettingPanel.activeSelf)
+        {
+            GuidePanel.SetActive(false);
+            SettingPanel.SetActive(false);
+            MenuPanel.SetActive(true);
+        }
+        else
+        {
+            // 그냥 MenuPanel을 토글
+            MenuPanel.SetActive(!MenuPanel.activeSelf);
+        }
     }
 
     void ToggleGuide()
@@ -161,7 +170,7 @@ public class BTN_Controller : MonoBehaviour
         bool isActive = GuidePanel.activeSelf;
         GuidePanel.SetActive(!isActive);
 
-        if (!isActive)
+        if (!isActive) // Guide를 켜는 경우
         {
             MenuPanel.SetActive(false);
             SettingPanel.SetActive(false);
@@ -173,14 +182,13 @@ public class BTN_Controller : MonoBehaviour
         bool isActive = SettingPanel.activeSelf;
         SettingPanel.SetActive(!isActive);
 
-        if (!isActive)
+        if (!isActive) // Setting을 켜는 경우
         {
             MenuPanel.SetActive(false);
             GuidePanel.SetActive(false);
         }
     }
 
-    // 볼륨 조절 함수 (BGM)
     void ChangeBGMVolume(float volume)
     {
         if (bgmAudioSource != null)
@@ -189,7 +197,6 @@ public class BTN_Controller : MonoBehaviour
         PlayerPrefs.SetFloat("BGMVolume", volume);
     }
 
-    // 볼륨 조절 함수 (SFX)
     void ChangeSFXVolume(float volume)
     {
         foreach (var sfx in sfxAudioSources)
