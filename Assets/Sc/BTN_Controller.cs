@@ -21,13 +21,13 @@ public class BTN_Controller : MonoBehaviour
     public Button GuideButton;
     public Button SettingButton;
 
-    // 🎵 추가: BGM, SFX 슬라이더
+    //  추가: BGM, SFX 슬라이더
     public Slider bgmSlider;
     public Slider sfxSlider;
 
-    // 🎵 추가: 오디오 소스
+    //  추가: 오디오 소스
     public AudioSource bgmAudioSource;
-    public AudioSource sfxAudioSource;
+    public List<AudioSource> sfxAudioSources; //  SFX 여러 개 
 
     void Start()
     {
@@ -46,15 +46,24 @@ public class BTN_Controller : MonoBehaviour
         GuidePanel.SetActive(false);
         SettingPanel.SetActive(false);
 
-        // 🎵 슬라이더 초기화 및 리스너 연결
-        if (bgmSlider != null)
+        // 슬라이더 초기화 및 리스너 연결 (볼륨 저장된 거 불러오기)
+        if (bgmSlider != null && bgmAudioSource != null)
         {
-            bgmSlider.value = bgmAudioSource.volume;
+            float savedBGMVolume = PlayerPrefs.GetFloat("BGMVolume", 0.5f);
+            bgmAudioSource.volume = savedBGMVolume;
+            bgmSlider.value = savedBGMVolume;
             bgmSlider.onValueChanged.AddListener(ChangeBGMVolume);
         }
-        if (sfxSlider != null)
+
+        if (sfxSlider != null && sfxAudioSources != null)
         {
-            sfxSlider.value = sfxAudioSource.volume;
+            float savedSFXVolume = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
+            foreach (var sfx in sfxAudioSources)
+            {
+                if (sfx != null)
+                    sfx.volume = savedSFXVolume;
+            }
+            sfxSlider.value = savedSFXVolume;
             sfxSlider.onValueChanged.AddListener(ChangeSFXVolume);
         }
     }
@@ -171,14 +180,23 @@ public class BTN_Controller : MonoBehaviour
         }
     }
 
-    // 🎵 추가: 볼륨 조절 함수
+    // 볼륨 조절 함수 (BGM)
     void ChangeBGMVolume(float volume)
     {
-        bgmAudioSource.volume = volume;
+        if (bgmAudioSource != null)
+            bgmAudioSource.volume = volume;
+
+        PlayerPrefs.SetFloat("BGMVolume", volume);
     }
 
+    // 볼륨 조절 함수 (SFX)
     void ChangeSFXVolume(float volume)
     {
-        sfxAudioSource.volume = volume;
+        foreach (var sfx in sfxAudioSources)
+        {
+            if (sfx != null)
+                sfx.volume = volume;
+        }
+        PlayerPrefs.SetFloat("SFXVolume", volume);
     }
 }
