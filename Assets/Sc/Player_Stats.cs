@@ -11,6 +11,9 @@ public class Player_Stats : MonoBehaviour
     public Text[] fishCountTexts = new Text[36];
     public Text goldText;
 
+    [Header("UI Indicator")]
+    public GameObject bucketFullIndicator; // Bucket_Full 오브젝트 연결
+
     [Header("Stats")]
     [Range(0, 3)]
     public int equippedRodIndex = 0;
@@ -44,7 +47,7 @@ public class Player_Stats : MonoBehaviour
         UpdateRod();
         UpdateExpUI();
         UpdateGoldUI();
-
+        CheckBucketStatus();
         if (coinSoundObject != null)
             coinAudioSource = coinSoundObject.GetComponent<AudioSource>();
 
@@ -176,6 +179,7 @@ public class Player_Stats : MonoBehaviour
         UpdateExpUI();
 
         SaveAllPlayerData();
+        CheckBucketStatus();
     }
 
     void LevelUp()
@@ -232,6 +236,22 @@ public class Player_Stats : MonoBehaviour
         expSlider.value = (float)exp / maxExp;
     }
 
+    void CheckBucketStatus()
+    {
+        bool hasAnyFish = false;
+        foreach (Text fishText in fishCountTexts)
+        {
+            if (int.Parse(fishText.text) > 0)
+            {
+                hasAnyFish = true;
+                break;
+            }
+        }
+
+        if (bucketFullIndicator != null)
+            bucketFullIndicator.SetActive(hasAnyFish);
+    }
+
     public void BuyFishingRod(int index, int price)
     {
         if (index < 0 || index >= rodNames.Length) return;
@@ -256,6 +276,31 @@ public class Player_Stats : MonoBehaviour
             Debug.Log("골드 부족!");
         }
     }
+    public void SellAllFish()
+    {
+        int totalGold = 0;
+
+        for (int i = 0; i < fishCountTexts.Length; i++)
+        {
+            int count = int.Parse(fishCountTexts[i].text);
+            if (count <= 0) continue;
+
+            int price = i % 3 == 0 ? 50 : i % 3 == 1 ? 100 : 300;
+            totalGold += price * count;
+
+            fishCountTexts[i].text = "0";
+        }
+
+        gold += totalGold;
+        UpdateGoldUI();
+
+        if (coinAudioSource != null && totalGold > 0)
+            coinAudioSource.Play();
+
+        SaveAllPlayerData();
+
+        Debug.Log($"모든 물고기 판매 완료! +{totalGold} 골드");
+    }
 
     public void SellFishByButtonIndex(int index)
     {
@@ -276,9 +321,10 @@ public class Player_Stats : MonoBehaviour
         Debug.Log($"[{index + 1}번 슬롯 판매] +{price} 골드!");
 
         SaveAllPlayerData();
+        CheckBucketStatus();
     }
 
-    void SaveAllPlayerData()
+    public void SaveAllPlayerData()
     {
         int[] fishCounts = new int[fishCountTexts.Length];
         for (int i = 0; i < fishCountTexts.Length; i++)
