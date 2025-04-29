@@ -17,7 +17,7 @@ public class Player_Stats : MonoBehaviour
     [Header("Stats")]
     [Range(0, 3)]
     public int equippedRodIndex = 0;
-    public int gold = 0;
+    public int gold = 100000;
 
     [Header("Sound")]
     public GameObject coinSoundObject; // Coin_Sound 오브젝트 연결
