@@ -7,18 +7,24 @@ using UnityEngine.UI;
 public class StartBTN : MonoBehaviour
 {
     public Button startButton;
+    public GameObject Black_Background;
+
     void Start()
     {
         startButton.onClick.AddListener(ToggleStart);
+        Black_Background.SetActive(false);
+        startButton.gameObject.SetActive(true);
     }
 
     void ToggleStart()
     {
-        SceneManager.LoadScene("InGameScene");
+        Black_Background.SetActive(true);
+        startButton.gameObject.SetActive(false);
+        // SceneManager.LoadScene("Korea_Summer");
     }
-    // Update is called once per frame
+
     void Update()
     {
-        
+
     }
 }
