@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Player_Stats : MonoBehaviour
 {
@@ -12,7 +13,11 @@ public class Player_Stats : MonoBehaviour
     public Text goldText;
 
     [Header("UI Indicator")]
-    public GameObject bucketFullIndicator; // Bucket_Full 오브젝트 연결
+    public GameObject bucketFullIndicator;
+
+    [Header("Player Name")]
+    public TMP_InputField nameInputField;
+    public TextMeshProUGUI playerNameDisplay;
 
     [Header("Stats")]
     [Range(0, 3)]
@@ -20,7 +25,7 @@ public class Player_Stats : MonoBehaviour
     public int gold = 100000;
 
     [Header("Sound")]
-    public GameObject coinSoundObject; // Coin_Sound 오브젝트 연결
+    public GameObject coinSoundObject;
     private AudioSource coinAudioSource;
 
     private int level = 1, exp = 0, maxExp = 10;
@@ -31,6 +36,7 @@ public class Player_Stats : MonoBehaviour
     private readonly string[] rodNames = {
         "Bamboo_fishing_rod", "Old_fishing_rod", "Iron_fishing_rod", "Master_fishing_rod"
     };
+
     private float[] rodTimes = { 10f, 9f, 7f, 5f };
 
     void Start()
@@ -48,11 +54,19 @@ public class Player_Stats : MonoBehaviour
         UpdateExpUI();
         UpdateGoldUI();
         CheckBucketStatus();
+
         if (coinSoundObject != null)
             coinAudioSource = coinSoundObject.GetComponent<AudioSource>();
 
         if (!isFishing)
             fishingRoutine = StartCoroutine(AutoFishingLoop());
+
+        if (PlayerPrefs.HasKey("PlayerName"))
+        {
+            string playerName = PlayerPrefs.GetString("PlayerName");
+            playerNameDisplay.text = playerName;
+            nameInputField.text = playerName;
+        }
     }
 
     void Update()
@@ -68,6 +82,22 @@ public class Player_Stats : MonoBehaviour
         SaveAllPlayerData();
     }
 
+    public void OnNameChanged()
+    {
+        if (nameInputField != null && nameInputField.text.Length > 1)
+        {
+            string newName = nameInputField.text;
+            PlayerPrefs.SetString("PlayerName", newName);
+            PlayerPrefs.Save();
+            playerNameDisplay.text = newName;
+            Debug.Log("플레이어 이름 변경됨: " + newName);
+        }
+        else
+        {
+            Debug.LogWarning("이름은 2자 이상이어야 합니다!");
+        }
+    }
+
     IEnumerator AutoFishingLoop()
     {
         while (true)
@@ -80,7 +110,10 @@ public class Player_Stats : MonoBehaviour
         }
     }
 
-    void UpdateGoldUI() => goldText.text = gold.ToString();
+    void UpdateGoldUI()
+    {
+        goldText.text = gold.ToString();
+    }
 
     void UpdateRod()
     {
@@ -108,7 +141,10 @@ public class Player_Stats : MonoBehaviour
             characterAnimator.SetLayerWeight(i, (i - 1 == equippedRodIndex) ? 1f : 0f);
     }
 
-    float GetRodAnimationTime() => rodTimes[equippedRodIndex];
+    float GetRodAnimationTime()
+    {
+        return rodTimes[equippedRodIndex];
+    }
 
     IEnumerator FishingProcess()
     {
@@ -135,6 +171,7 @@ public class Player_Stats : MonoBehaviour
     int GetFishByLevel()
     {
         float rand = Random.Range(0f, 100f);
+
         if (level == 1) return rand < 99f ? 3 : rand < 100f ? 2 : 1;
         if (level == 2) return rand < 98f ? 3 : rand < 100f ? 2 : 1;
         if (level == 3) return rand < 97f ? 3 : rand < 100f ? 2 : 1;
@@ -159,6 +196,7 @@ public class Player_Stats : MonoBehaviour
         if (level == 28) return rand < 35f ? 3 : rand < 77f ? 2 : 1;
         if (level == 29) return rand < 30f ? 3 : rand < 75f ? 2 : 1;
         if (level == 30) return rand < 25f ? 3 : rand < 75f ? 2 : 1;
+
         return 3;
     }
 
@@ -177,7 +215,6 @@ public class Player_Stats : MonoBehaviour
 
         while (exp >= maxExp) LevelUp();
         UpdateExpUI();
-
         SaveAllPlayerData();
         CheckBucketStatus();
     }
@@ -231,7 +268,7 @@ public class Player_Stats : MonoBehaviour
 
     void UpdateExpUI()
     {
-        expText.text = exp + " / " + maxExp;
+        expText.text = $"{exp} / {maxExp}";
         levelText.text = level.ToString();
         expSlider.value = (float)exp / maxExp;
     }
@@ -239,6 +276,7 @@ public class Player_Stats : MonoBehaviour
     void CheckBucketStatus()
     {
         bool hasAnyFish = false;
+
         foreach (Text fishText in fishCountTexts)
         {
             if (int.Parse(fishText.text) > 0)
@@ -248,14 +286,12 @@ public class Player_Stats : MonoBehaviour
             }
         }
 
-        if (bucketFullIndicator != null)
-            bucketFullIndicator.SetActive(hasAnyFish);
+        bucketFullIndicator?.SetActive(hasAnyFish);
     }
 
     public void BuyFishingRod(int index, int price)
     {
-        if (index < 0 || index >= rodNames.Length) return;
-        if (index <= equippedRodIndex) return;
+        if (index < 0 || index >= rodNames.Length || index <= equippedRodIndex) return;
 
         if (gold >= price)
         {
@@ -276,6 +312,7 @@ public class Player_Stats : MonoBehaviour
             Debug.Log("골드 부족!");
         }
     }
+
     public void SellAllFish()
     {
         int totalGold = 0;
@@ -298,7 +335,6 @@ public class Player_Stats : MonoBehaviour
             coinAudioSource.Play();
 
         SaveAllPlayerData();
-
         Debug.Log($"모든 물고기 판매 완료! +{totalGold} 골드");
     }
 
