@@ -65,7 +65,7 @@ public class Player_Stats : MonoBehaviour
         {
             string playerName = PlayerPrefs.GetString("PlayerName");
             playerNameDisplay.text = playerName;
-            nameInputField.text = playerName;
+            // nameInputField.text = playerName;
         }
     }
 
