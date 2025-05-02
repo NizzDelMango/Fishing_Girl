@@ -21,6 +21,15 @@ public class BTN_Controller : MonoBehaviour
     public Button GuideButton;
     public Button SettingButton;
 
+<<<<<<< HEAD
+=======
+    public GameObject bucketFull;
+    public Button bucketFullButton;
+
+    public Button saveExitButton;
+    public Player_Stats playerStats;
+
+>>>>>>> main
     void Start()
     {
         storeButton.onClick.AddListener(ToggleStore);
@@ -31,12 +40,24 @@ public class BTN_Controller : MonoBehaviour
         GuideButton.onClick.AddListener(ToggleGuide);
         SettingButton.onClick.AddListener(ToggleSetting);
 
+<<<<<<< HEAD
+=======
+        bucketFullButton.onClick.AddListener(SellAllFish);
+        saveExitButton.onClick.AddListener(SaveAndExit);
+
+>>>>>>> main
         storePanel.SetActive(false);
         bucketPanel.SetActive(false);
         inventoryPanel.SetActive(false);
         MenuPanel.SetActive(false);
         GuidePanel.SetActive(false);
         SettingPanel.SetActive(false);
+<<<<<<< HEAD
+=======
+
+        if (bucketFull != null)
+            bucketFull.SetActive(false);
+>>>>>>> main
     }
 
     void Update()
@@ -76,6 +97,11 @@ public class BTN_Controller : MonoBehaviour
                 SettingPanel.SetActive(false);
             }
         }
+<<<<<<< HEAD
+=======
+
+        CheckBucketFull();
+>>>>>>> main
     }
 
     void ToggleStore()
@@ -119,6 +145,7 @@ public class BTN_Controller : MonoBehaviour
         {
             storePanel.SetActive(false);
             bucketPanel.SetActive(false);
+<<<<<<< HEAD
         }
     }
 
@@ -159,6 +186,103 @@ public class BTN_Controller : MonoBehaviour
         {
             MenuPanel.SetActive(false);
             GuidePanel.SetActive(false);
+=======
+>>>>>>> main
         }
     }
+
+    void ToggleMenu()
+    {
+        if (GuidePanel.activeSelf || SettingPanel.activeSelf)
+        {
+            GuidePanel.SetActive(false);
+            SettingPanel.SetActive(false);
+            MenuPanel.SetActive(true);
+        }
+        else
+        {
+            MenuPanel.SetActive(!MenuPanel.activeSelf);
+        }
+    }
+
+    void ToggleGuide()
+    {
+        bool isActive = GuidePanel.activeSelf;
+        GuidePanel.SetActive(!isActive);
+
+        if (!isActive)
+        {
+            MenuPanel.SetActive(false);
+            SettingPanel.SetActive(false);
+        }
+    }
+
+    void ToggleSetting()
+    {
+        bool isActive = SettingPanel.activeSelf;
+        SettingPanel.SetActive(!isActive);
+
+        if (!isActive)
+        {
+            MenuPanel.SetActive(false);
+            GuidePanel.SetActive(false);
+        }
+    }
+
+    void CheckBucketFull()
+    {
+        if (playerStats == null || bucketFull == null) return;
+
+        bool hasFish = false;
+        foreach (Text fishText in playerStats.fishCountTexts)
+        {
+            if (int.Parse(fishText.text) > 0)
+            {
+                hasFish = true;
+                break;
+            }
+        }
+
+        bucketFull.SetActive(hasFish);
+    }
+
+    void SellAllFish()
+    {
+        if (playerStats != null)
+        {
+            playerStats.SellAllFish();
+            StartCoroutine(ActivateBucketAndPlayAnimation());
+        }
+    }
+
+    IEnumerator ActivateBucketAndPlayAnimation()
+    {
+        bucketPanel.SetActive(true);
+        yield return null; // 다음 프레임까지 대기 (Animator가 초기화될 시간 확보)
+
+        Animator animator = bucketPanel.GetComponent<Animator>();
+        if (animator != null)
+        {
+            animator.SetTrigger("Bucket_Touched");
+        }
+    }
+    void SaveAndExit()
+{
+    if (playerStats != null)
+    {
+        playerStats.SaveAllPlayerData();
+        Debug.Log("Player data saved successfully.");
+    }
+    else
+    {
+        Debug.LogError("Player_Stats not found!");
+    }
+
+#if UNITY_EDITOR
+    UnityEditor.EditorApplication.isPlaying = false;
+#else
+    Application.Quit();
+#endif
+}
+
 }

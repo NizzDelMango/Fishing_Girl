@@ -7,8 +7,13 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/Start.unity
-    guid: 7bbf1195f4c1ac641beebf62e8ac58b9
+    guid: bfffe3d523e842e4d877114ab53b7f0f
   - enabled: 1
+<<<<<<< HEAD
     path: Assets/Scenes/InGameScene.unity
     guid: ea126e4e4a907844e91c40d52d40b750
+=======
+    path: Assets/Scenes/Korea_Summer.unity
+    guid: 0fe1d095fa557b3428d84a830aefc076
+>>>>>>> main
   m_configObjects: {}
