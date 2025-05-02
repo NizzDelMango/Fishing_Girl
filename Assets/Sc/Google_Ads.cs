@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 /*
->>>>>>> main
 using UnityEngine;
 using GoogleMobileAds;
 using GoogleMobileAds.Api;
@@ -80,7 +77,4 @@ public class InterstitialAdManager : MonoBehaviour
         }
     }
 }
-<<<<<<< HEAD
-=======
 */
->>>>>>> main

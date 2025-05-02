@@ -21,15 +21,12 @@ public class BTN_Controller : MonoBehaviour
     public Button GuideButton;
     public Button SettingButton;
 
-<<<<<<< HEAD
-=======
     public GameObject bucketFull;
     public Button bucketFullButton;
 
     public Button saveExitButton;
     public Player_Stats playerStats;
 
->>>>>>> main
     void Start()
     {
         storeButton.onClick.AddListener(ToggleStore);
@@ -40,24 +37,18 @@ public class BTN_Controller : MonoBehaviour
         GuideButton.onClick.AddListener(ToggleGuide);
         SettingButton.onClick.AddListener(ToggleSetting);
 
-<<<<<<< HEAD
-=======
         bucketFullButton.onClick.AddListener(SellAllFish);
         saveExitButton.onClick.AddListener(SaveAndExit);
 
->>>>>>> main
         storePanel.SetActive(false);
         bucketPanel.SetActive(false);
         inventoryPanel.SetActive(false);
         MenuPanel.SetActive(false);
         GuidePanel.SetActive(false);
         SettingPanel.SetActive(false);
-<<<<<<< HEAD
-=======
 
         if (bucketFull != null)
             bucketFull.SetActive(false);
->>>>>>> main
     }
 
     void Update()
@@ -97,11 +88,8 @@ public class BTN_Controller : MonoBehaviour
                 SettingPanel.SetActive(false);
             }
         }
-<<<<<<< HEAD
-=======
 
         CheckBucketFull();
->>>>>>> main
     }
 
     void ToggleStore()
@@ -145,49 +133,6 @@ public class BTN_Controller : MonoBehaviour
         {
             storePanel.SetActive(false);
             bucketPanel.SetActive(false);
-<<<<<<< HEAD
-        }
-    }
-
-    void ToggleMenu()
-    {
-        // Guide나 Setting이 열려있으면 끄고 MenuPanel만 열어
-        if (GuidePanel.activeSelf || SettingPanel.activeSelf)
-        {
-            GuidePanel.SetActive(false);
-            SettingPanel.SetActive(false);
-            MenuPanel.SetActive(true);
-        }
-        else
-        {
-            // 그냥 MenuPanel을 토글
-            MenuPanel.SetActive(!MenuPanel.activeSelf);
-        }
-    }
-
-    void ToggleGuide()
-    {
-        bool isActive = GuidePanel.activeSelf;
-        GuidePanel.SetActive(!isActive);
-
-        if (!isActive) // Guide를 켜는 경우
-        {
-            MenuPanel.SetActive(false);
-            SettingPanel.SetActive(false);
-        }
-    }
-
-    void ToggleSetting()
-    {
-        bool isActive = SettingPanel.activeSelf;
-        SettingPanel.SetActive(!isActive);
-
-        if (!isActive) // Setting을 켜는 경우
-        {
-            MenuPanel.SetActive(false);
-            GuidePanel.SetActive(false);
-=======
->>>>>>> main
         }
     }
 

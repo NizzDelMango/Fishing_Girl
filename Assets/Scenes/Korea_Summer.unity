@@ -758,22 +758,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 103233084}
-<<<<<<<< HEAD:Assets/Scenes/InGameScene.unity
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-========
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
->>>>>>>> main:Assets/Scenes/Korea_Summer.unity
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 792201848}
   - {fileID: 109452779}
-<<<<<<<< HEAD:Assets/Scenes/InGameScene.unity
-  m_Father: {fileID: 342639934}
-========
   m_Father: {fileID: 386675543}
->>>>>>>> main:Assets/Scenes/Korea_Summer.unity
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -920,10 +912,7 @@ GameObject:
   - component: {fileID: 109452779}
   - component: {fileID: 109452781}
   - component: {fileID: 109452780}
-<<<<<<<< HEAD:Assets/Scenes/InGameScene.unity
-========
   - component: {fileID: 109452782}
->>>>>>>> main:Assets/Scenes/Korea_Summer.unity
   m_Layer: 5
   m_Name: Bucket__Full
   m_TagString: Untagged
@@ -988,8 +977,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 109452778}
   m_CullTransparentMesh: 1
-<<<<<<<< HEAD:Assets/Scenes/InGameScene.unity
-========
 --- !u!114 &109452782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1034,7 +1021,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
->>>>>>>> main:Assets/Scenes/Korea_Summer.unity
 --- !u!1 &113945842
 GameObject:
   m_ObjectHideFlags: 0
@@ -2848,14 +2834,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-<<<<<<<< HEAD:Assets/Scenes/InGameScene.unity
-  - {fileID: 447584400}
-  - {fileID: 103233085}
-  - {fileID: 1049910104}
-  - {fileID: 853632509}
-========
   - {fileID: 386675543}
->>>>>>>> main:Assets/Scenes/Korea_Summer.unity
   - {fileID: 1535415439}
   - {fileID: 1241350744}
   - {fileID: 1116396436}
@@ -2954,13 +2933,10 @@ MonoBehaviour:
   MenuButton: {fileID: 1386982868}
   GuideButton: {fileID: 1432957931}
   SettingButton: {fileID: 1569551351}
-<<<<<<<< HEAD:Assets/Scenes/InGameScene.unity
-========
   bucketFull: {fileID: 109452778}
   bucketFullButton: {fileID: 109452782}
   saveExitButton: {fileID: 1976046029}
   playerStats: {fileID: 1424694310}
->>>>>>>> main:Assets/Scenes/Korea_Summer.unity
 --- !u!1 &343189254
 GameObject:
   m_ObjectHideFlags: 0
@@ -3557,88 +3533,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 395208406}
   m_CullTransparentMesh: 1
-<<<<<<<< HEAD:Assets/Scenes/InGameScene.unity
---- !u!1 &395325010
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 395325011}
-  - component: {fileID: 395325013}
-  - component: {fileID: 395325012}
-  m_Layer: 5
-  m_Name: Name_Text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &395325011
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395325010}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1826924974}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -212, y: 878}
-  m_SizeDelta: {x: 300, y: 120}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &395325012
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395325010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: ef83ddfbc24805b48a994630c4a698c4, type: 3}
-    m_FontSize: 40
-    m_FontStyle: 1
-    m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 84
-    m_Alignment: 3
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: "\uACF5\uBC31"
---- !u!222 &395325013
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395325010}
-  m_CullTransparentMesh: 1
-========
->>>>>>>> main:Assets/Scenes/Korea_Summer.unity
 --- !u!1 &408745772
 GameObject:
   m_ObjectHideFlags: 0
@@ -3755,11 +3649,7 @@ RectTransform:
   - {fileID: 231399288}
   - {fileID: 895194854}
   - {fileID: 1424715504}
-<<<<<<<< HEAD:Assets/Scenes/InGameScene.unity
-  m_Father: {fileID: 342639934}
-========
   m_Father: {fileID: 386675543}
->>>>>>>> main:Assets/Scenes/Korea_Summer.unity
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4478,8 +4368,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterAnimator: {fileID: 782300462}
   triggerName: Touched
-<<<<<<<< HEAD:Assets/Scenes/InGameScene.unity
-========
 --- !u!114 &569153056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4493,7 +4381,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
->>>>>>>> main:Assets/Scenes/Korea_Summer.unity
 --- !u!1 &579720466
 GameObject:
   m_ObjectHideFlags: 0
@@ -6253,11 +6140,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1364374293}
-<<<<<<<< HEAD:Assets/Scenes/InGameScene.unity
-  m_Father: {fileID: 463351101}
-========
   m_Father: {fileID: 569153052}
->>>>>>>> main:Assets/Scenes/Korea_Summer.unity
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6932,11 +6815,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 853632508}
-<<<<<<<< HEAD:Assets/Scenes/InGameScene.unity
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-========
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
->>>>>>>> main:Assets/Scenes/Korea_Summer.unity
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6944,11 +6823,7 @@ RectTransform:
   - {fileID: 1187090692}
   - {fileID: 911687906}
   - {fileID: 1902044787}
-<<<<<<<< HEAD:Assets/Scenes/InGameScene.unity
-  m_Father: {fileID: 342639934}
-========
   m_Father: {fileID: 386675543}
->>>>>>>> main:Assets/Scenes/Korea_Summer.unity
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -17284,8 +17159,6 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2072468502}
-<<<<<<<< HEAD:Assets/Scenes/InGameScene.unity
-========
   m_CullTransparentMesh: 1
 --- !u!1 &2085704393
 GameObject:
@@ -17420,7 +17293,6 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2085704393}
->>>>>>>> main:Assets/Scenes/Korea_Summer.unity
   m_CullTransparentMesh: 1
 --- !u!1 &2109157685
 GameObject:

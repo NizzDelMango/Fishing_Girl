@@ -22,11 +22,7 @@ public class Player_Stats : MonoBehaviour
     [Header("Stats")]
     [Range(0, 3)]
     public int equippedRodIndex = 0;
-    public int gold = 0;
-
-    [Header("Sound")]
-    public GameObject coinSoundObject; // Coin_Sound 오브젝트 연결
-    private AudioSource coinAudioSource;
+    public int gold = 100000;
 
     [Header("Sound")]
     public GameObject coinSoundObject;
@@ -40,6 +36,7 @@ public class Player_Stats : MonoBehaviour
     private readonly string[] rodNames = {
         "Bamboo_fishing_rod", "Old_fishing_rod", "Iron_fishing_rod", "Master_fishing_rod"
     };
+
     private float[] rodTimes = { 10f, 9f, 7f, 5f };
 
     void Start()
@@ -56,18 +53,13 @@ public class Player_Stats : MonoBehaviour
         UpdateRod();
         UpdateExpUI();
         UpdateGoldUI();
-<<<<<<< HEAD
-=======
         CheckBucketStatus();
->>>>>>> main
 
         if (coinSoundObject != null)
             coinAudioSource = coinSoundObject.GetComponent<AudioSource>();
 
         if (!isFishing)
             fishingRoutine = StartCoroutine(AutoFishingLoop());
-<<<<<<< HEAD
-=======
 
         if (PlayerPrefs.HasKey("PlayerName"))
         {
@@ -75,7 +67,6 @@ public class Player_Stats : MonoBehaviour
             playerNameDisplay.text = playerName;
             // nameInputField.text = playerName;
         }
->>>>>>> main
     }
 
     void Update()
@@ -84,8 +75,6 @@ public class Player_Stats : MonoBehaviour
 
         if (characterAnimator.GetCurrentAnimatorStateInfo(0).IsName("Fishing"))
             characterAnimator.SetInteger("Fish", 0);
-<<<<<<< HEAD
-=======
     }
 
     void OnApplicationQuit()
@@ -119,27 +108,12 @@ public class Player_Stats : MonoBehaviour
             yield return new WaitUntil(() => !isFishing);
             yield return new WaitForSeconds(0.5f);
         }
->>>>>>> main
     }
 
-    void OnApplicationQuit()
+    void UpdateGoldUI()
     {
-        SaveAllPlayerData();
+        goldText.text = gold.ToString();
     }
-
-    IEnumerator AutoFishingLoop()
-    {
-        while (true)
-        {
-            if (!isFishing)
-                fishingRoutine = StartCoroutine(FishingProcess());
-
-            yield return new WaitUntil(() => !isFishing);
-            yield return new WaitForSeconds(0.5f);
-        }
-    }
-
-    void UpdateGoldUI() => goldText.text = gold.ToString();
 
     void UpdateRod()
     {
@@ -241,17 +215,10 @@ public class Player_Stats : MonoBehaviour
 
         while (exp >= maxExp) LevelUp();
         UpdateExpUI();
-<<<<<<< HEAD
-
-        SaveAllPlayerData();
-    }
-
-=======
         SaveAllPlayerData();
         CheckBucketStatus();
     }
 
->>>>>>> main
     void LevelUp()
     {
         if (level >= 30)
@@ -324,12 +291,7 @@ public class Player_Stats : MonoBehaviour
 
     public void BuyFishingRod(int index, int price)
     {
-<<<<<<< HEAD
-        if (index < 0 || index >= rodNames.Length) return;
-        if (index <= equippedRodIndex) return;
-=======
         if (index < 0 || index >= rodNames.Length || index <= equippedRodIndex) return;
->>>>>>> main
 
         if (gold >= price)
         {
@@ -395,16 +357,10 @@ public class Player_Stats : MonoBehaviour
         Debug.Log($"[{index + 1}번 슬롯 판매] +{price} 골드!");
 
         SaveAllPlayerData();
-<<<<<<< HEAD
-    }
-
-    void SaveAllPlayerData()
-=======
         CheckBucketStatus();
     }
 
     public void SaveAllPlayerData()
->>>>>>> main
     {
         int[] fishCounts = new int[fishCountTexts.Length];
         for (int i = 0; i < fishCountTexts.Length; i++)
