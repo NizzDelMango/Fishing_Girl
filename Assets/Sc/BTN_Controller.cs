@@ -112,7 +112,7 @@ public class BTN_Controller : MonoBehaviour
         {
             bucketPanel.SetActive(true);
             storePanel.SetActive(false);
-            inventoryPanel.SetActive(false);
+            inventoryPanel.SetActive(true);
         }
         else
         {

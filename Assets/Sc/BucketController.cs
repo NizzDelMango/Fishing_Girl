@@ -5,6 +5,8 @@ public class BucketController : MonoBehaviour, IPointerClickHandler
 {
     private Animator animator;
 
+    public GameObject inventoryPanel;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -21,5 +23,9 @@ public class BucketController : MonoBehaviour, IPointerClickHandler
     public void OnAnimationEnd()
     {
         gameObject.SetActive(false);
+        if (inventoryPanel != null)
+        {
+            inventoryPanel.SetActive(false); // 인벤토리 패널도 같이 비활성화
+        }
     }
 }
