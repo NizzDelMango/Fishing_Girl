@@ -2251,6 +2251,7 @@ MonoBehaviour:
   rodIndex: 2
   rodPrice: 50000
   playerStats: {fileID: 1424694310}
+  isAdRequired: 0
 --- !u!114 &253694647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3628,7 +3629,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &447584400
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5348,6 +5349,7 @@ MonoBehaviour:
   rodIndex: 3
   rodPrice: 999999
   playerStats: {fileID: 1424694310}
+  isAdRequired: 1
 --- !u!114 &706373687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7586,6 +7588,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 936963657}
   m_CullTransparentMesh: 1
+--- !u!1 &952866360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 952866362}
+  - component: {fileID: 952866361}
+  m_Layer: 0
+  m_Name: AdManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &952866361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952866360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f5a1bd2114f98246b71336c5ba94a2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &952866362
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952866360}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -12707,6 +12753,7 @@ MonoBehaviour:
   rodIndex: 0
   rodPrice: 0
   playerStats: {fileID: 1424694310}
+  isAdRequired: 0
 --- !u!114 &1527453720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13061,6 +13108,7 @@ MonoBehaviour:
   rodIndex: 1
   rodPrice: 10000
   playerStats: {fileID: 1424694310}
+  isAdRequired: 0
 --- !u!114 &1551327662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17616,3 +17664,4 @@ SceneRoots:
   - {fileID: 1424694311}
   - {fileID: 1999272968}
   - {fileID: 1854909697}
+  - {fileID: 952866362}
