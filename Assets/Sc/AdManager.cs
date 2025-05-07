@@ -6,7 +6,7 @@ public class AdManager : MonoBehaviour
 {
     public static AdManager Instance; // 다른 스크립트에서 접근할 수 있게 싱글톤 사용
     private RewardedAd rewardedAd;
-    private string adUnitId = "ca-app-pub-3940256099942544/5224354917"; // 테스트 광고 ID
+    private string adUnitId = "ca-app-pub-3940256099942544/5224354917"; // 광고 ID
 
     private Action onAdSuccess; // 광고 성공 후 실행할 콜백
 
