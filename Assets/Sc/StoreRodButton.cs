@@ -3,10 +3,10 @@ using UnityEngine.UI;
 
 public class StoreRodButton : MonoBehaviour
 {
-    public int rodIndex; // 0: Bamboo, 1: Old, 2: Iron, 3: Master
+    public int rodIndex;
     public int rodPrice;
     public Player_Stats playerStats;
-    public bool isAdRequired = false; // ÀÌ ³¬½Ë´ë°¡ ±¤°í ½ÃÃ»À¸·Î¸¸ ¾ò´Â °ÍÀÎÁö?
+    public bool isAdRequired = false;
 
     void Start()
     {
@@ -16,19 +16,16 @@ public class StoreRodButton : MonoBehaviour
     void BuyRod()
     {
         if (playerStats == null) return;
-
         if (isAdRequired)
         {
-            // ±¤°í ½ÃÃ» ÈÄ ³¬½Ë´ë Áö±Ş
             AdManager.Instance.ShowRewardedAd(() =>
             {
-                playerStats.BuyFishingRod(rodIndex, 0); // °¡°İÀº 0À¸·Î Ã³¸®
-                Debug.Log("±¤°í º¸»óÀ¸·Î ³¬½Ë´ë Áö±Ş!");
+                playerStats.BuyFishingRod(rodIndex, 0);
+                Debug.Log("ê´‘ê³  ë³´ìƒìœ¼ë¡œ ë‚šì‹¯ëŒ€ ì§€ê¸‰!");
             });
         }
         else
         {
-            // ÀÏ¹İ °ñµå·Î ±¸¸Å
             playerStats.BuyFishingRod(rodIndex, rodPrice);
         }
     }
