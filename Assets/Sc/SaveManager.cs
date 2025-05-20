@@ -2,10 +2,11 @@ using UnityEngine;
 
 public static class SaveManager
 {
-    public static void SavePlayerData(int level, int exp, int gold, int rodIndex, int[] fishCounts)
+    public static void SavePlayerData(int level, int exp, int maxExp, int gold, int rodIndex, int[] fishCounts)
     {
         PlayerPrefs.SetInt("Level", level);
         PlayerPrefs.SetInt("Exp", exp);
+        PlayerPrefs.SetInt("MaxExp", maxExp); // Ãß°¡
         PlayerPrefs.SetInt("Gold", gold);
         PlayerPrefs.SetInt("RodIndex", rodIndex);
 

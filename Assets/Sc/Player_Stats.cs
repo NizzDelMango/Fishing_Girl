@@ -23,6 +23,7 @@ public class Player_Stats : MonoBehaviour
     [Range(0, 3)]
     public int equippedRodIndex = 0;
     public int gold = 100000;
+    
 
     [Header("Sound")]
     public GameObject coinSoundObject;
@@ -43,6 +44,7 @@ public class Player_Stats : MonoBehaviour
     {
         level = SaveManager.LoadInt("Level", 1);
         exp = SaveManager.LoadInt("Exp", 0);
+        maxExp = SaveManager.LoadInt("MaxExp", 10); // 기본값 25 (1레벨 기준)
         gold = SaveManager.LoadInt("Gold", 0);
         equippedRodIndex = SaveManager.LoadInt("RodIndex", 0);
 
@@ -224,6 +226,7 @@ public class Player_Stats : MonoBehaviour
         if (level >= 30)
         {
             exp = maxExp;
+            UpdateExpUI();
             return;
         }
 
@@ -260,7 +263,7 @@ public class Player_Stats : MonoBehaviour
             case 27: maxExp = 36000; break;
             case 28: maxExp = 43000; break;
             case 29: maxExp = 50000; break;
-            case 30: maxExp = 0; break;
+            case 30: maxExp = 999999; break;
         }
 
         UpdateExpUI();
@@ -327,7 +330,7 @@ public class Player_Stats : MonoBehaviour
 
             fishCountTexts[i].text = "0";
         }
-
+   
         gold += totalGold;
         UpdateGoldUI();
 
@@ -366,6 +369,6 @@ public class Player_Stats : MonoBehaviour
         for (int i = 0; i < fishCountTexts.Length; i++)
             fishCounts[i] = int.Parse(fishCountTexts[i].text);
 
-        SaveManager.SavePlayerData(level, exp, gold, equippedRodIndex, fishCounts);
+        SaveManager.SavePlayerData(level, exp, maxExp, gold, equippedRodIndex, fishCounts);
     }
 }
