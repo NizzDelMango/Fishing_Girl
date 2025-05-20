@@ -108,7 +108,7 @@ public class Player_Stats : MonoBehaviour
                 fishingRoutine = StartCoroutine(FishingProcess());
 
             yield return new WaitUntil(() => !isFishing);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
@@ -265,7 +265,6 @@ public class Player_Stats : MonoBehaviour
             case 29: maxExp = 50000; break;
             case 30: maxExp = 999999; break;
         }
-
         UpdateExpUI();
     }
 
@@ -288,7 +287,6 @@ public class Player_Stats : MonoBehaviour
                 break;
             }
         }
-
         bucketFullIndicator?.SetActive(hasAnyFish);
     }
 
