@@ -29,4 +29,6 @@ public static class SaveManager
             fishCounts[i] = PlayerPrefs.GetInt("Fish_" + i, 0);
         return fishCounts;
     }
+
+
 }

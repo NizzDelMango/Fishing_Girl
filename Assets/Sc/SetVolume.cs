@@ -17,4 +17,6 @@ public class SetVolume : MonoBehaviour
         float savedSFXVolume = PlayerPrefs.GetFloat("SFX",1.0f);
         mixer.SetFloat("SFX", Mathf.Log10(sliderValue) * 20);
     }
+    
+
 }

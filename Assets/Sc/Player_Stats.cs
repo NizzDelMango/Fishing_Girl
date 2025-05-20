@@ -22,7 +22,7 @@ public class Player_Stats : MonoBehaviour
     [Header("Stats")]
     [Range(0, 3)]
     public int equippedRodIndex = 0;
-    public int gold = 100000;
+    public int gold = 0;
     
 
     [Header("Sound")]
@@ -44,7 +44,7 @@ public class Player_Stats : MonoBehaviour
     {
         level = SaveManager.LoadInt("Level", 1);
         exp = SaveManager.LoadInt("Exp", 0);
-        maxExp = SaveManager.LoadInt("MaxExp", 10); // 기본값 25 (1레벨 기준)
+        maxExp = SaveManager.LoadInt("MaxExp", 10); 
         gold = SaveManager.LoadInt("Gold", 0);
         equippedRodIndex = SaveManager.LoadInt("RodIndex", 0);
 
