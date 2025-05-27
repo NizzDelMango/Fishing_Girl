@@ -235,9 +235,7 @@ public class Player_Stats : MonoBehaviour
 
         switch (level)
         {
-            case 2: maxExp = 25; break;
-            case 3: maxExp = 50; break;
-            case 4: maxExp = 80; break;
+            case 2: maxExp = 25; break; case 3: maxExp = 50; break; case 4: maxExp = 80; break;
             case 5: maxExp = 115; break;
             case 6: maxExp = 150; break;
             case 7: maxExp = 200; break;

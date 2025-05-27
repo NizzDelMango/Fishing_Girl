@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Korea_Summer.unity
     guid: 0fe1d095fa557b3428d84a830aefc076
+  - enabled: 1
+    path: Assets/Scenes/Japan_Spring.unity
+    guid: fed865d5c6073d340ac965766d1f843d
   m_configObjects: {}
