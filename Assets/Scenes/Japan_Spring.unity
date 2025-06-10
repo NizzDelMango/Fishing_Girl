@@ -637,6 +637,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mixer: {fileID: 24100000, guid: 6f85f995ba145e64cac654b22b7fd959, type: 2}
+  bgmSlider: {fileID: 0}
+  sfxSlider: {fileID: 0}
 --- !u!1 &100388401
 GameObject:
   m_ObjectHideFlags: 0
@@ -4498,6 +4500,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mixer: {fileID: 24100000, guid: 6f85f995ba145e64cac654b22b7fd959, type: 2}
+  bgmSlider: {fileID: 0}
+  sfxSlider: {fileID: 0}
 --- !u!1 &595292657
 GameObject:
   m_ObjectHideFlags: 0
@@ -6804,12 +6808,12 @@ GameObject:
   m_Component:
   - component: {fileID: 853632509}
   m_Layer: 5
-  m_Name: ' Menu'
+  m_Name: Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &853632509
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7266,7 +7270,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &911687906
 RectTransform:
   m_ObjectHideFlags: 0
