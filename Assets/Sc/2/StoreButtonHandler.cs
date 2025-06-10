@@ -25,15 +25,23 @@ public class StoreRodButtonHandler : MonoBehaviour
             // ±¤°í ½ÃÃ» ÈÄ ³¬½Ë´ë Áö±Þ
             AdManager.Instance.ShowRewardedAd(() =>
             {
-                gameManager.rodSelection = rodIndex;
+                EquipRod();
                 Debug.Log($"[±¤°í º¸»ó] {rodIndex}¹ø ³¬½Ë´ë ÀåÂø ¿Ï·á");
             });
         }
         else
         {
             // ¹Ù·Î ³¬½Ë´ë ÀåÂø
-            gameManager.rodSelection = rodIndex;
+            EquipRod();
             Debug.Log($"{rodIndex}¹ø ³¬½Ë´ë ÀåÂø ¿Ï·á");
         }
+    }
+
+    void EquipRod()
+    {
+        gameManager.rodSelection = rodIndex;
+
+        // Áï½Ã ¹Ý¿µÀ» À§ÇØ ApplyRodLayer È£Ãâ
+        gameManager.SendMessage("ApplyRodLayer");
     }
 }

@@ -900,7 +900,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 103233084}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a069b2c3e73a322429153488558a2960, type: 3}
+  m_Script: {fileID: 11500000, guid: bd2eef0e8a97e0f4bbb0737b6b06ff4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &109452778
@@ -1204,6 +1204,10 @@ MonoBehaviour:
   playerLevel: 1
   playerExp: 0
   maxExp: 100
+  expSlider: {fileID: 369425704}
+  expText: {fileID: 692582573}
+  levelText: {fileID: 860561523}
+  nameText: {fileID: 2085704395}
 --- !u!4 &171842780
 Transform:
   m_ObjectHideFlags: 0

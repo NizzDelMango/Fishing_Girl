@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -30,21 +32,25 @@ public class GameManager : MonoBehaviour
         "방어", "붉바리", "청새치", "백상아리"
     };
 
-    // 플레이어 정보 관련 변수
     [Header("Player Data")]
     public string playerName = "플레이어";
     public int playerLevel = 1;
     public int playerExp = 0;
     public int maxExp = 100;
 
+    [Header("UI")]
+    public Slider expSlider;
+    public Text expText;
+    public Text levelText;
+    public TMP_Text nameText;
+
     private void Awake()
     {
-        // 싱글톤 생성
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            LoadPlayerData();  // 플레이어 데이터 로드
+            LoadPlayerData();
         }
         else
         {
@@ -56,6 +62,7 @@ public class GameManager : MonoBehaviour
     {
         ApplyRodLayer();
         ApplyCharactorLayer();
+        UpdatePlayerUI();
     }
 
     void Update()
@@ -150,6 +157,16 @@ public class GameManager : MonoBehaviour
         SaveCaughtFish(fish, size);
 
         Debug.Log($"잡힌 물고기: {fish} ({size})");
+
+        int exp = size switch
+        {
+            "Small" => 1,
+            "Medium" => 3,
+            "Large" => 5,
+            _ => 5
+        };
+
+        AddExp(exp);
     }
 
     string GetRandomFish()
@@ -170,7 +187,7 @@ public class GameManager : MonoBehaviour
                 return fishNames[i];
         }
 
-        return fishNames[0]; // fallback
+        return fishNames[0];
     }
 
     void SaveCaughtFish(string name, string size)
@@ -181,7 +198,56 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    // 플레이어 데이터 저장 및 불러오기
+    public void AddExp(int amount)
+    {
+        playerExp += amount;
+
+        while (playerExp >= maxExp)
+        {
+            playerExp -= maxExp;
+            playerLevel++;
+
+            maxExp = CalculateMaxExp(playerLevel);
+            Debug.Log($"레벨업! 현재 레벨: {playerLevel}");
+        }
+
+        UpdatePlayerUI();
+        SavePlayerData();
+    }
+
+    private int CalculateMaxExp(int level)
+    {
+        int[] expTable = new int[]
+        {
+            10, 25, 50, 80, 115, 150, 200, 255, 320, 400,
+            500, 610, 750, 1000, 1500, 2800, 4200, 5800, 7000, 9000,
+            11000, 13500, 16500, 20000, 25000, 30000, 36000, 43000, 50000
+        };
+
+        if (level >= 1 && level <= expTable.Length)
+            return expTable[level - 1];
+
+        return expTable[expTable.Length - 1]; // 레벨 30 이상은 고정 또는 자유 처리
+    }
+
+    public void UpdatePlayerUI()
+    {
+        if (expSlider != null)
+        {
+            expSlider.maxValue = maxExp;
+            expSlider.value = playerExp;
+        }
+
+        if (expText != null)
+            expText.text = $"{playerExp} / {maxExp}";
+
+        if (levelText != null)
+            levelText.text = $"Lv. {playerLevel}";
+
+        if (nameText != null)
+            nameText.text = playerName;
+    }
+
     public void LoadPlayerData()
     {
         playerName = PlayerPrefs.GetString("PlayerName", "플레이어");
@@ -200,10 +266,5 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.Save();
 
         Debug.Log("플레이어 데이터 저장됨.");
-    }
-
-    private int CalculateMaxExp(int level)
-    {
-        return 100 + (level - 1) * 20;
     }
 }
