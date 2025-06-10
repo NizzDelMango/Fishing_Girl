@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2cbbe9225a624b14da3819ee07bbbe25
+guid: f6ad4ba0ca0e8aa43a5a6ad4c3010ee8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Fished_Middle 1_0
+      name: Fished_Small_0
       rect:
         serializedVersion: 2
         x: 427
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ace60199092515741b9bb9e7ac65c415
-      internalID: 788025877
+      spriteID: 12423a4f48656854db8e5b85f905d7b2
+      internalID: -1049754857
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fished_Middle 1_1
+      name: Fished_Small_1
       rect:
         serializedVersion: 2
         x: 854
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c52d576a4a692ad4b856c147b4bf9ea3
-      internalID: 1585791052
+      spriteID: cdb73753d526d2a478f4c4ad4bd05b73
+      internalID: 1899337670
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fished_Middle 1_2
+      name: Fished_Small_2
       rect:
         serializedVersion: 2
         x: 1281
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 982b0de831dd63a4b901bc845bae6b4d
-      internalID: -1351744764
+      spriteID: cda70a5bb3cd1ec4aba8bda24755e9fc
+      internalID: -922020055
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fished_Middle 1_3
+      name: Fished_Small_3
       rect:
         serializedVersion: 2
         x: 1708
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 966a074541104b04bbb9ea5da4c68f77
-      internalID: 893491252
+      spriteID: 80091aaaeaa55e84d81a1ebd84ddbf23
+      internalID: 1269020271
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fished_Middle 1_4
+      name: Fished_Small_4
       rect:
         serializedVersion: 2
         x: 0
@@ -208,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97928d34abbf0734b9add916876392e0
-      internalID: -886954608
+      spriteID: 043f121f6d32dc146922556a9a8419d1
+      internalID: -984250431
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fished_Middle 1_5
+      name: Fished_Small_5
       rect:
         serializedVersion: 2
         x: 427
@@ -229,14 +229,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd2570abf8ea1c04893f321690a7f45c
-      internalID: -430276191
+      spriteID: 4ab526d1c2abec243a36033cf7c3ae83
+      internalID: -1928084608
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fished_Middle 1_6
+      name: Fished_Small_6
       rect:
         serializedVersion: 2
         x: 854
@@ -250,14 +250,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 57bfe3c975497684292c4f0f4d624525
-      internalID: 1615109784
+      spriteID: 8dd74fce7b7bd9040bd459fe1b3a4af2
+      internalID: 2019625382
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fished_Middle 1_7
+      name: Fished_Small_7
       rect:
         serializedVersion: 2
         x: 1281
@@ -271,8 +271,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a577eb9643ce0444bd9b0ed473873a0
-      internalID: -80722287
+      spriteID: 1d2f77549b295924eb7d8c2c4c5c11fb
+      internalID: -1202633178
       vertices: []
       indices: 
       edges: []
@@ -288,14 +288,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Fished_Middle 1_0: 788025877
-      Fished_Middle 1_1: 1585791052
-      Fished_Middle 1_2: -1351744764
-      Fished_Middle 1_3: 893491252
-      Fished_Middle 1_4: -886954608
-      Fished_Middle 1_5: -430276191
-      Fished_Middle 1_6: 1615109784
-      Fished_Middle 1_7: -80722287
+      Fished_Small_0: -1049754857
+      Fished_Small_1: 1899337670
+      Fished_Small_2: -922020055
+      Fished_Small_3: 1269020271
+      Fished_Small_4: -984250431
+      Fished_Small_5: -1928084608
+      Fished_Small_6: 2019625382
+      Fished_Small_7: -1202633178
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f6ad4ba0ca0e8aa43a5a6ad4c3010ee8
+guid: 1f0f86ff9368561469196542f38bc74f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Fished_Small 1_0
+      name: Fished_Large_0
       rect:
         serializedVersion: 2
         x: 427
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e2cddfba831f984e840add5079399a3
-      internalID: 616519847
+      spriteID: 084b7e2f68097894f8ae62c39eace9cb
+      internalID: -1361870172
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fished_Small 1_1
+      name: Fished_Large_1
       rect:
         serializedVersion: 2
         x: 854
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1fd5dd25b3773f48967c0ec36e57b0f
-      internalID: 1144872608
+      spriteID: 345597294465c3f4bb4181c252dc5655
+      internalID: 532759401
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fished_Small 1_2
+      name: Fished_Large_2
       rect:
         serializedVersion: 2
         x: 1281
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 901d9f20ae9e2064abcf97a4394d058d
-      internalID: -269868666
+      spriteID: 95986a80b902ae04aae0810b2f1fac64
+      internalID: -382932658
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fished_Small 1_3
+      name: Fished_Large_3
       rect:
         serializedVersion: 2
         x: 1708
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4464983e3a3f6746b803063b1e855a4
-      internalID: 8655138
+      spriteID: 8179505369cfe094e92691241c87c08a
+      internalID: 1861674601
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fished_Small 1_4
+      name: Fished_Large_4
       rect:
         serializedVersion: 2
         x: 0
@@ -208,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6975e3efa36624a46a5e6baea56155a4
-      internalID: 2057514768
+      spriteID: 07f09e1c9cc0e0545ba0b83a9ceea8de
+      internalID: -1428803815
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fished_Small 1_5
+      name: Fished_Large_5
       rect:
         serializedVersion: 2
         x: 427
@@ -229,14 +229,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9bc80d2b91dab9e489bf3133ca88a2e4
-      internalID: 911789288
+      spriteID: c87de90b11a06a246bba3475ceac05aa
+      internalID: 422209919
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fished_Small 1_6
+      name: Fished_Large_6
       rect:
         serializedVersion: 2
         x: 854
@@ -250,14 +250,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42856fbc59cb4ae4688edaad5b56bc8e
-      internalID: 1959456506
+      spriteID: c29fdf9586f69e348a6291d0d0d3653d
+      internalID: -2049517839
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fished_Small 1_7
+      name: Fished_Large_7
       rect:
         serializedVersion: 2
         x: 1281
@@ -271,8 +271,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2736b843f763c0043aea5a50ec5c520f
-      internalID: -2093289692
+      spriteID: 661d1d325e435d14f9c1d6ea4d41b955
+      internalID: 1159429572
       vertices: []
       indices: 
       edges: []
@@ -288,14 +288,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Fished_Small 1_0: 616519847
-      Fished_Small 1_1: 1144872608
-      Fished_Small 1_2: -269868666
-      Fished_Small 1_3: 8655138
-      Fished_Small 1_4: 2057514768
-      Fished_Small 1_5: 911789288
-      Fished_Small 1_6: 1959456506
-      Fished_Small 1_7: -2093289692
+      Fished_Large_0: -1361870172
+      Fished_Large_1: 532759401
+      Fished_Large_2: -382932658
+      Fished_Large_3: 1861674601
+      Fished_Large_4: -1428803815
+      Fished_Large_5: 422209919
+      Fished_Large_6: -2049517839
+      Fished_Large_7: 1159429572
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
