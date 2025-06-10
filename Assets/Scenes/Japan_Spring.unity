@@ -916,7 +916,7 @@ GameObject:
   - component: {fileID: 109452780}
   - component: {fileID: 109452782}
   m_Layer: 5
-  m_Name: Bucket__Full
+  m_Name: Bucket_Full
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2936,9 +2936,9 @@ MonoBehaviour:
   MenuButton: {fileID: 1386982868}
   GuideButton: {fileID: 1432957931}
   SettingButton: {fileID: 1569551351}
-  bucketFull: {fileID: 109452778}
   bucketFullButton: {fileID: 109452782}
   saveExitButton: {fileID: 1976046029}
+  bucketFull: {fileID: 109452778}
   playerStats: {fileID: 1424694310}
 --- !u!1 &343189254
 GameObject:

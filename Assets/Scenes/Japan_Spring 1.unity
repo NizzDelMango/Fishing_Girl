@@ -916,7 +916,7 @@ GameObject:
   - component: {fileID: 109452780}
   - component: {fileID: 109452782}
   m_Layer: 5
-  m_Name: Bucket__Full
+  m_Name: Bucket_Full
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1177,7 +1177,7 @@ GameObject:
   - component: {fileID: 171842780}
   - component: {fileID: 171842779}
   m_Layer: 0
-  m_Name: PlayerManager
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1197,8 +1197,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charactorAnimator: {fileID: 2047589989}
   fishingRodAnimator: {fileID: 1159356867}
+  fishAnimator: {fileID: 1283433930}
   rodSelection: 1
   charactorSelection: 1
+  playerName: "\uD50C\uB808\uC774\uC5B4"
+  playerLevel: 1
+  playerExp: 0
+  maxExp: 100
 --- !u!4 &171842780
 Transform:
   m_ObjectHideFlags: 0
@@ -1297,7 +1302,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -1715,7 +1720,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -2114,7 +2119,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -2211,8 +2216,8 @@ GameObject:
   - component: {fileID: 253694644}
   - component: {fileID: 253694648}
   - component: {fileID: 253694647}
-  - component: {fileID: 253694646}
   - component: {fileID: 253694645}
+  - component: {fileID: 253694649}
   m_Layer: 5
   m_Name: 3
   m_TagString: Untagged
@@ -2286,22 +2291,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &253694646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 253694643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c93d849d2bb3a0740b93c7bfec71a054, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rodIndex: 3
-  rodPrice: 50000
-  playerStats: {fileID: 1424694310}
-  isAdRequired: 0
 --- !u!114 &253694647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2340,6 +2329,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 253694643}
   m_CullTransparentMesh: 1
+--- !u!114 &253694649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253694643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4205965a730f63429f7b27668e9b6cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rodIndex: 3
+  isAdRequired: 0
+  gameManager: {fileID: 171842779}
 --- !u!1 &301496748
 GameObject:
   m_ObjectHideFlags: 0
@@ -2435,101 +2439,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 301496748}
   m_CullTransparentMesh: 1
---- !u!1 &313053974
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 313053975}
-  - component: {fileID: 313053977}
-  - component: {fileID: 313053976}
-  - component: {fileID: 313053978}
-  m_Layer: 5
-  m_Name: Fish_Text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &313053975
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 313053974}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1826924974}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -213, y: -877.31}
-  m_SizeDelta: {x: 321.2, y: 156.1}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &313053976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 313053974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: ef83ddfbc24805b48a994630c4a698c4, type: 3}
-    m_FontSize: 44
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 4
-    m_MaxSize: 89
-    m_Alignment: 3
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: 
---- !u!222 &313053977
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 313053974}
-  m_CullTransparentMesh: 1
---- !u!114 &313053978
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 313053974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
-  m_EffectDistance: {x: 1.62, y: 2.11}
-  m_UseGraphicAlpha: 1
 --- !u!1 &328066708
 GameObject:
   m_ObjectHideFlags: 0
@@ -2803,7 +2712,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -2984,10 +2893,10 @@ MonoBehaviour:
   MenuButton: {fileID: 1386982868}
   GuideButton: {fileID: 1432957931}
   SettingButton: {fileID: 1569551351}
-  bucketFull: {fileID: 109452778}
   bucketFullButton: {fileID: 109452782}
   saveExitButton: {fileID: 1976046029}
-  playerStats: {fileID: 1424694310}
+  bucketFull: {fileID: 109452778}
+  playerStats: {fileID: 0}
 --- !u!1 &343189254
 GameObject:
   m_ObjectHideFlags: 0
@@ -3534,7 +3443,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -4070,7 +3979,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -4132,7 +4041,7 @@ GameObject:
   - component: {fileID: 470898916}
   - component: {fileID: 470898915}
   m_Layer: 5
-  m_Name: Money
+  m_Name: Gold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4360,8 +4269,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2047589988}
-  - {fileID: 1283433929}
   - {fileID: 1159356866}
+  - {fileID: 1283433929}
   m_Father: {fileID: 463351101}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -5078,7 +4987,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -5140,7 +5049,7 @@ GameObject:
   - component: {fileID: 692582574}
   - component: {fileID: 692582573}
   m_Layer: 5
-  m_Name: Exp_Text
+  m_Name: Exp_Text(Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5313,8 +5222,8 @@ GameObject:
   - component: {fileID: 706373684}
   - component: {fileID: 706373688}
   - component: {fileID: 706373687}
-  - component: {fileID: 706373686}
   - component: {fileID: 706373685}
+  - component: {fileID: 706373689}
   m_Layer: 5
   m_Name: 4
   m_TagString: Untagged
@@ -5388,22 +5297,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &706373686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 706373683}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c93d849d2bb3a0740b93c7bfec71a054, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rodIndex: 4
-  rodPrice: 999999
-  playerStats: {fileID: 1424694310}
-  isAdRequired: 1
 --- !u!114 &706373687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5442,6 +5335,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 706373683}
   m_CullTransparentMesh: 1
+--- !u!114 &706373689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706373683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4205965a730f63429f7b27668e9b6cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rodIndex: 4
+  isAdRequired: 1
+  gameManager: {fileID: 171842779}
 --- !u!1 &712231325
 GameObject:
   m_ObjectHideFlags: 0
@@ -5525,7 +5433,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -6018,7 +5926,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -6575,7 +6483,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -6845,7 +6753,7 @@ GameObject:
   - component: {fileID: 860561524}
   - component: {fileID: 860561523}
   m_Layer: 5
-  m_Name: Lv_Text
+  m_Name: Lv_Text(Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7448,7 +7356,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -7779,7 +7687,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -7943,7 +7851,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -8851,7 +8759,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -9618,7 +9526,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -9751,7 +9659,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -10317,81 +10225,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1218312531}
   m_CullTransparentMesh: 1
---- !u!1 &1218623279
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1218623280}
-  - component: {fileID: 1218623282}
-  - component: {fileID: 1218623281}
-  m_Layer: 5
-  m_Name: Fish_Log
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &1218623280
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1218623279}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 1826924974}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -455, y: -877.31}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1218623281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1218623279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1218623282
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1218623279}
-  m_CullTransparentMesh: 1
 --- !u!1 &1234814463
 GameObject:
   m_ObjectHideFlags: 0
@@ -10475,7 +10308,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -10796,7 +10629,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -11364,7 +11197,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -11497,7 +11330,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -11758,7 +11591,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -11928,98 +11761,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1386982866}
   m_CullTransparentMesh: 1
---- !u!1 &1424694309
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1424694311}
-  - component: {fileID: 1424694310}
-  m_Layer: 0
-  m_Name: Player_Stats
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
---- !u!114 &1424694310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1424694309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76450c4031bd42248b1dff6968c9edfc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterAnimator: {fileID: 0}
-  expText: {fileID: 692582573}
-  levelText: {fileID: 860561523}
-  expSlider: {fileID: 369425704}
-  fishCountTexts:
-  - {fileID: 183338223}
-  - {fileID: 797782743}
-  - {fileID: 197122499}
-  - {fileID: 1536386987}
-  - {fileID: 242937233}
-  - {fileID: 1426274912}
-  - {fileID: 621694782}
-  - {fileID: 100388404}
-  - {fileID: 1306612916}
-  - {fileID: 1201110869}
-  - {fileID: 766870537}
-  - {fileID: 236745390}
-  - {fileID: 1675043073}
-  - {fileID: 1967372132}
-  - {fileID: 712281578}
-  - {fileID: 2028214112}
-  - {fileID: 1142720835}
-  - {fileID: 343189257}
-  - {fileID: 723050600}
-  - {fileID: 1108618649}
-  - {fileID: 699243341}
-  - {fileID: 42941345}
-  - {fileID: 335859645}
-  - {fileID: 301496751}
-  - {fileID: 1077043194}
-  - {fileID: 1286398498}
-  - {fileID: 1723651473}
-  - {fileID: 474422694}
-  - {fileID: 223656730}
-  - {fileID: 25756577}
-  - {fileID: 908454939}
-  - {fileID: 2109157688}
-  - {fileID: 1075998555}
-  - {fileID: 1848927946}
-  - {fileID: 1315992493}
-  - {fileID: 661642081}
-  goldText: {fileID: 1663000080}
-  bucketFullIndicator: {fileID: 109452778}
-  nameInputField: {fileID: 0}
-  playerNameDisplay: {fileID: 2085704395}
-  equippedRodIndex: 0
-  gold: 100000
-  coinSoundObject: {fileID: 1854909695}
---- !u!4 &1424694311
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1424694309}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1424715503
 GameObject:
   m_ObjectHideFlags: 0
@@ -12395,7 +12136,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -12603,7 +12344,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -12873,8 +12614,8 @@ GameObject:
   - component: {fileID: 1527453717}
   - component: {fileID: 1527453721}
   - component: {fileID: 1527453720}
-  - component: {fileID: 1527453719}
   - component: {fileID: 1527453718}
+  - component: {fileID: 1527453722}
   m_Layer: 5
   m_Name: 1
   m_TagString: Untagged
@@ -12948,22 +12689,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1527453719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1527453716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c93d849d2bb3a0740b93c7bfec71a054, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rodIndex: 1
-  rodPrice: 0
-  playerStats: {fileID: 1424694310}
-  isAdRequired: 0
 --- !u!114 &1527453720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13002,6 +12727,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1527453716}
   m_CullTransparentMesh: 1
+--- !u!114 &1527453722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527453716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4205965a730f63429f7b27668e9b6cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rodIndex: 1
+  isAdRequired: 0
+  gameManager: {fileID: 171842779}
 --- !u!1 &1535415438
 GameObject:
   m_ObjectHideFlags: 0
@@ -13228,8 +12968,8 @@ GameObject:
   - component: {fileID: 1551327659}
   - component: {fileID: 1551327663}
   - component: {fileID: 1551327662}
-  - component: {fileID: 1551327661}
   - component: {fileID: 1551327660}
+  - component: {fileID: 1551327664}
   m_Layer: 5
   m_Name: 2
   m_TagString: Untagged
@@ -13303,22 +13043,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1551327661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1551327658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c93d849d2bb3a0740b93c7bfec71a054, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rodIndex: 2
-  rodPrice: 10000
-  playerStats: {fileID: 1424694310}
-  isAdRequired: 0
 --- !u!114 &1551327662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13357,6 +13081,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1551327658}
   m_CullTransparentMesh: 1
+--- !u!114 &1551327664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551327658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4205965a730f63429f7b27668e9b6cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rodIndex: 2
+  isAdRequired: 0
+  gameManager: {fileID: 171842779}
 --- !u!1 &1569551349
 GameObject:
   m_ObjectHideFlags: 0
@@ -13951,7 +13690,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -14013,7 +13752,7 @@ GameObject:
   - component: {fileID: 1663000081}
   - component: {fileID: 1663000080}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: Gold_Text(Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14258,7 +13997,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -14391,7 +14130,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -14619,7 +14358,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -15051,8 +14790,6 @@ RectTransform:
   - {fileID: 860561522}
   - {fileID: 2085704394}
   - {fileID: 470898914}
-  - {fileID: 1218623280}
-  - {fileID: 313053975}
   m_Father: {fileID: 1059858827}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -15206,7 +14943,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -15339,7 +15076,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -15695,7 +15432,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -16113,7 +15850,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -16764,7 +16501,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -16897,7 +16634,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -17030,7 +16767,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -17258,7 +16995,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -17627,7 +17364,7 @@ GameObject:
   - component: {fileID: 2085704396}
   - component: {fileID: 2085704395}
   m_Layer: 5
-  m_Name: Name_Text
+  m_Name: Name_Text(TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18007,7 +17744,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424694310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Stats, Assembly-CSharp
         m_MethodName: SellFishByButtonIndex
         m_Mode: 3
@@ -18068,7 +17805,6 @@ SceneRoots:
   - {fileID: 1236788706}
   - {fileID: 973563448}
   - {fileID: 923085057}
-  - {fileID: 1424694311}
   - {fileID: 1999272968}
   - {fileID: 1854909697}
   - {fileID: 1364374293}

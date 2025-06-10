@@ -1,30 +1,29 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BTN_Controller : MonoBehaviour
 {
+    [Header("패널 오브젝트")]
     public GameObject storePanel;
     public GameObject bucketPanel;
     public GameObject inventoryPanel;
-
     public GameObject MenuPanel;
     public GameObject GuidePanel;
     public GameObject SettingPanel;
 
+    [Header("버튼 오브젝트")]
     public Button storeButton;
     public Button bucketButton;
     public Button inventoryButton;
-
     public Button MenuButton;
     public Button GuideButton;
     public Button SettingButton;
-
-    public GameObject bucketFull;
     public Button bucketFullButton;
-
     public Button saveExitButton;
+
+    [Header("버킷 알림 및 플레이어 스탯")]
+    public GameObject bucketFull;
     public Player_Stats playerStats;
 
     void Start()
@@ -40,6 +39,7 @@ public class BTN_Controller : MonoBehaviour
         bucketFullButton.onClick.AddListener(SellAllFish);
         saveExitButton.onClick.AddListener(SaveAndExit);
 
+        // 초기 패널 상태 비활성화
         storePanel.SetActive(false);
         bucketPanel.SetActive(false);
         inventoryPanel.SetActive(false);
@@ -55,41 +55,46 @@ public class BTN_Controller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (GuidePanel.activeSelf)
-            {
-                GuidePanel.SetActive(false);
-                MenuPanel.SetActive(true);
-            }
-            else if (SettingPanel.activeSelf)
-            {
-                SettingPanel.SetActive(false);
-                MenuPanel.SetActive(true);
-            }
-            else if (storePanel.activeSelf)
-            {
-                storePanel.SetActive(false);
-            }
-            else if (bucketPanel.activeSelf)
-            {
-                bucketPanel.SetActive(false);
-            }
-            else if (inventoryPanel.activeSelf)
-            {
-                inventoryPanel.SetActive(false);
-            }
-            else if (MenuPanel.activeSelf)
-            {
-                MenuPanel.SetActive(false);
-            }
-            else
-            {
-                MenuPanel.SetActive(true);
-                GuidePanel.SetActive(false);
-                SettingPanel.SetActive(false);
-            }
+            HandleEscapeInput();
         }
 
         CheckBucketFull();
+    }
+
+    void HandleEscapeInput()
+    {
+        if (GuidePanel.activeSelf)
+        {
+            GuidePanel.SetActive(false);
+            MenuPanel.SetActive(true);
+        }
+        else if (SettingPanel.activeSelf)
+        {
+            SettingPanel.SetActive(false);
+            MenuPanel.SetActive(true);
+        }
+        else if (storePanel.activeSelf)
+        {
+            storePanel.SetActive(false);
+        }
+        else if (bucketPanel.activeSelf)
+        {
+            bucketPanel.SetActive(false);
+        }
+        else if (inventoryPanel.activeSelf)
+        {
+            inventoryPanel.SetActive(false);
+        }
+        else if (MenuPanel.activeSelf)
+        {
+            MenuPanel.SetActive(false);
+        }
+        else
+        {
+            MenuPanel.SetActive(true);
+            GuidePanel.SetActive(false);
+            SettingPanel.SetActive(false);
+        }
     }
 
     void ToggleStore()
@@ -203,7 +208,7 @@ public class BTN_Controller : MonoBehaviour
     IEnumerator ActivateBucketAndPlayAnimation()
     {
         bucketPanel.SetActive(true);
-        yield return null; // 다음 프레임까지 대기 (Animator가 초기화될 시간 확보)
+        yield return null; // 다음 프레임까지 대기
 
         Animator animator = bucketPanel.GetComponent<Animator>();
         if (animator != null)
@@ -211,23 +216,23 @@ public class BTN_Controller : MonoBehaviour
             animator.SetTrigger("Bucket_Touched");
         }
     }
+
     void SaveAndExit()
-{
-    if (playerStats != null)
     {
-        playerStats.SaveAllPlayerData();
-        Debug.Log("Player data saved successfully.");
-    }
-    else
-    {
-        Debug.LogError("Player_Stats not found!");
-    }
+        if (playerStats != null)
+        {
+            playerStats.SaveAllPlayerData();
+            Debug.Log("Player data saved successfully.");
+        }
+        else
+        {
+            Debug.LogError("Player_Stats not found!");
+        }
 
 #if UNITY_EDITOR
-    UnityEditor.EditorApplication.isPlaying = false;
+        UnityEditor.EditorApplication.isPlaying = false;
 #else
-    Application.Quit();
+        Application.Quit();
 #endif
-}
-
+    }
 }
