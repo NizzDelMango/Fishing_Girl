@@ -4254,7 +4254,6 @@ GameObject:
   - component: {fileID: 569153052}
   - component: {fileID: 569153054}
   - component: {fileID: 569153053}
-  - component: {fileID: 569153055}
   - component: {fileID: 569153056}
   m_Layer: 5
   m_Name: Background
@@ -4323,20 +4322,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 569153051}
   m_CullTransparentMesh: 1
---- !u!114 &569153055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 569153051}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 704e59741fd696a4aa654e582e1802c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterAnimator: {fileID: 0}
-  triggerName: Touched
 --- !u!114 &569153056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9088,7 +9073,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1116396439}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 171842779}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SellAllFish
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1116396439
 MonoBehaviour:
   m_ObjectHideFlags: 0

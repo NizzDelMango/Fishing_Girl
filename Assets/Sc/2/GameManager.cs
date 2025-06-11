@@ -1,6 +1,8 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
+using System.Collections.Generic; // [ì¶”ê°€]
 
 public class GameManager : MonoBehaviour
 {
@@ -27,13 +29,13 @@ public class GameManager : MonoBehaviour
 
     private string[] fishNames = new string[]
     {
-        "¸êÄ¡", "Àü°»ÀÌ", "ÁãÄ¡", "¿ì·°",
-        "±¤¾î", "µµ¹Ì", "°íµî¾î", "ÂüÄ¡",
-        "¹æ¾î", "ºÓ¹Ù¸®", "Ã»»õÄ¡", "¹é»ó¾Æ¸®"
+        "ë©¸ì¹˜", "ì „ê°±ì´", "ì¥ì¹˜", "ìš°ëŸ­",
+        "ê´‘ì–´", "ë„ë¯¸", "ê³ ë“±ì–´", "ì°¸ì¹˜",
+        "ë°©ì–´", "ë¶‰ë°”ë¦¬", "ì²­ìƒˆì¹˜", "ë°±ìƒì•„ë¦¬"
     };
 
     [Header("Player Data")]
-    public string playerName = "ÇÃ·¹ÀÌ¾î";
+    public string playerName = "í”Œë ˆì´ì–´";
     public int playerLevel = 1;
     public int playerExp = 0;
     public int maxExp = 100;
@@ -46,8 +48,15 @@ public class GameManager : MonoBehaviour
 
     [Header("Player Currency")]
     public int playerGold = 0;
-    public Text goldText;  // UI ¿¬°á ÇÊ¿ä
+    public Text goldText;
 
+    // [ì¶”ê°€] ì‚¬ì´ì¦ˆë³„ íŒë§¤ ê°€ê²©
+    private Dictionary<string, int> fishPrices = new Dictionary<string, int>()
+    {
+        { "Small", 10 },
+        { "Medium", 20 },
+        { "Large", 40 }
+    };
 
     public bool SpendGold(int amount)
     {
@@ -55,7 +64,7 @@ public class GameManager : MonoBehaviour
         {
             playerGold -= amount;
             UpdateGoldUI();
-            SavePlayerData();  // ÀúÀåµµ ÇÔ²²
+            SavePlayerData();
             return true;
         }
         return false;
@@ -73,6 +82,7 @@ public class GameManager : MonoBehaviour
         if (goldText != null)
             goldText.text = $"{playerGold} G";
     }
+
     private void Awake()
     {
         if (Instance == null)
@@ -146,7 +156,6 @@ public class GameManager : MonoBehaviour
 
         fishingRodAnimator?.SetTrigger("Reset");
         charactorAnimator?.SetTrigger("Reset");
-
         lastRodSelection = rodSelection;
     }
 
@@ -159,7 +168,6 @@ public class GameManager : MonoBehaviour
 
         charactorAnimator?.SetTrigger("Reset");
         fishingRodAnimator?.SetTrigger("Reset");
-
         lastCharactorSelection = charactorSelection;
     }
 
@@ -178,15 +186,11 @@ public class GameManager : MonoBehaviour
     void TriggerRandomFishAnimation()
     {
         string[] sizeTriggers = { "Small", "Medium", "Large" };
-        string size = sizeTriggers[Random.Range(0, sizeTriggers.Length)];
-
+        string size = sizeTriggers[UnityEngine.Random.Range(0, sizeTriggers.Length)];
         fishAnimator.SetTrigger(size);
-        Debug.Log($"Fish Animation Triggered: {size}");
 
         string fish = GetRandomFish();
         SaveCaughtFish(fish, size);
-
-        Debug.Log($"ÀâÈù ¹°°í±â: {fish} ({size})");
 
         int exp = size switch
         {
@@ -202,12 +206,11 @@ public class GameManager : MonoBehaviour
     string GetRandomFish()
     {
         int[] weights = { 20, 18, 16, 14, 12, 10, 8, 6, 5, 4, 3, 2 };
-
         int totalWeight = 0;
         foreach (int w in weights)
             totalWeight += w;
 
-        int rand = Random.Range(0, totalWeight);
+        int rand = UnityEngine.Random.Range(0, totalWeight);
         int cumulative = 0;
 
         for (int i = 0; i < weights.Length; i++)
@@ -225,7 +228,49 @@ public class GameManager : MonoBehaviour
         string key = $"Fish_{name}_{size}";
         int count = PlayerPrefs.GetInt(key, 0);
         PlayerPrefs.SetInt(key, count + 1);
+
+        // [ì¶”ê°€] í‚¤ ëª©ë¡ ì €ì¥
+        string keyList = PlayerPrefs.GetString("FishKeys", "");
+        if (!keyList.Contains(key))
+        {
+            keyList += key + ";";
+            PlayerPrefs.SetString("FishKeys", keyList);
+        }
+
         PlayerPrefs.Save();
+    }
+
+    // [ì¶”ê°€] ì „ì²´ ë¬¼ê³ ê¸° íŒë§¤
+    public void SellAllFish()
+    {
+        string keyList = PlayerPrefs.GetString("FishKeys", "");
+        if (string.IsNullOrEmpty(keyList)) return;
+
+        string[] keys = keyList.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+        int totalGold = 0;
+
+        foreach (string key in keys)
+        {
+            int count = PlayerPrefs.GetInt(key, 0);
+            string[] parts = key.Split('_');  // "Fish_ë©¸ì¹˜_Small"
+            if (parts.Length == 3)
+            {
+                string size = parts[2];
+                if (fishPrices.ContainsKey(size))
+                {
+                    int price = fishPrices[size];
+                    totalGold += price * count;
+                }
+
+                PlayerPrefs.DeleteKey(key);
+            }
+        }
+
+        PlayerPrefs.DeleteKey("FishKeys"); // í‚¤ ëª©ë¡ë„ ì´ˆê¸°í™”
+        AddGold(totalGold);
+        PlayerPrefs.Save();
+
+        Debug.Log($"ì „ì²´ íŒë§¤ ì™„ë£Œ! íšë“í•œ ê³¨ë“œ: {totalGold}");
     }
 
     public void AddExp(int amount)
@@ -236,9 +281,7 @@ public class GameManager : MonoBehaviour
         {
             playerExp -= maxExp;
             playerLevel++;
-
             maxExp = CalculateMaxExp(playerLevel);
-            Debug.Log($"·¹º§¾÷! ÇöÀç ·¹º§: {playerLevel}");
         }
 
         UpdatePlayerUI();
@@ -257,7 +300,7 @@ public class GameManager : MonoBehaviour
         if (level >= 1 && level <= expTable.Length)
             return expTable[level - 1];
 
-        return expTable[expTable.Length - 1]; // ·¹º§ 30 ÀÌ»óÀº °íÁ¤ ¶Ç´Â ÀÚÀ¯ Ã³¸®
+        return expTable[expTable.Length - 1];
     }
 
     public void UpdatePlayerUI()
@@ -280,14 +323,12 @@ public class GameManager : MonoBehaviour
 
     public void LoadPlayerData()
     {
-        playerName = PlayerPrefs.GetString("PlayerName", "ÇÃ·¹ÀÌ¾î");
+        playerName = PlayerPrefs.GetString("PlayerName", "í”Œë ˆì´ì–´");
         playerLevel = PlayerPrefs.GetInt("PlayerLevel", 1);
         playerExp = PlayerPrefs.GetInt("PlayerExp", 0);
         maxExp = CalculateMaxExp(playerLevel);
         playerGold = PlayerPrefs.GetInt("PlayerGold", 0);
         UpdateGoldUI();
-
-        Debug.Log($"ÇÃ·¹ÀÌ¾î µ¥ÀÌÅÍ ºÒ·¯¿È: {playerName}, ·¹º§ {playerLevel}, °æÇèÄ¡ {playerExp}/{maxExp}");
     }
 
     public void SavePlayerData()
@@ -295,8 +336,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetString("PlayerName", playerName);
         PlayerPrefs.SetInt("PlayerLevel", playerLevel);
         PlayerPrefs.SetInt("PlayerExp", playerExp);
-        PlayerPrefs.Save();
         PlayerPrefs.SetInt("PlayerGold", playerGold);
-        Debug.Log("ÇÃ·¹ÀÌ¾î µ¥ÀÌÅÍ ÀúÀåµÊ.");
+        PlayerPrefs.Save();
     }
 }
