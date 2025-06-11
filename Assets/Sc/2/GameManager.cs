@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using TMPro;
 using System;
-using System.Collections.Generic; // [추가]
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -50,7 +50,6 @@ public class GameManager : MonoBehaviour
     public int playerGold = 0;
     public Text goldText;
 
-    // [추가] 사이즈별 판매 가격
     private Dictionary<string, int> fishPrices = new Dictionary<string, int>()
     {
         { "Small", 10 },
@@ -89,7 +88,7 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            LoadPlayerData();
+            LoadPlayerData(); // [변경] Save 전에 Load
         }
         else
         {
@@ -99,7 +98,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        ApplyRodLayer();
+        ApplyRodLayer(); // [중요] Load 이후 적용
         ApplyCharactorLayer();
         UpdatePlayerUI();
         UpdateGoldUI();
@@ -124,18 +123,13 @@ public class GameManager : MonoBehaviour
             }
 
             stateTimer += Time.deltaTime;
-
             float waitTime = GetWaitTimeByRod(rodSelection);
 
             if (stateTimer >= waitTime)
             {
                 fishingRodAnimator.SetTrigger("Fished");
-
-                if (charactorAnimator != null)
-                    charactorAnimator.SetTrigger("Fished");
-
-                if (fishAnimator != null)
-                    TriggerRandomFishAnimation();
+                charactorAnimator?.SetTrigger("Fished");
+                fishAnimator?.SetTrigger(GetRandomSizeTrigger());
 
                 isWaiting = false;
             }
@@ -150,9 +144,7 @@ public class GameManager : MonoBehaviour
     void ApplyRodLayer()
     {
         for (int i = 1; i <= 4; i++)
-        {
             fishingRodAnimator.SetLayerWeight(i, (i == rodSelection) ? 1f : 0f);
-        }
 
         fishingRodAnimator?.SetTrigger("Reset");
         charactorAnimator?.SetTrigger("Reset");
@@ -162,9 +154,7 @@ public class GameManager : MonoBehaviour
     void ApplyCharactorLayer()
     {
         for (int i = 1; i <= 2; i++)
-        {
             charactorAnimator.SetLayerWeight(i, (i == charactorSelection) ? 1f : 0f);
-        }
 
         charactorAnimator?.SetTrigger("Reset");
         fishingRodAnimator?.SetTrigger("Reset");
@@ -183,12 +173,11 @@ public class GameManager : MonoBehaviour
         };
     }
 
-    void TriggerRandomFishAnimation()
+    string GetRandomSizeTrigger()
     {
         string[] sizeTriggers = { "Small", "Medium", "Large" };
         string size = sizeTriggers[UnityEngine.Random.Range(0, sizeTriggers.Length)];
         fishAnimator.SetTrigger(size);
-
         string fish = GetRandomFish();
         SaveCaughtFish(fish, size);
 
@@ -201,6 +190,7 @@ public class GameManager : MonoBehaviour
         };
 
         AddExp(exp);
+        return size;
     }
 
     string GetRandomFish()
@@ -229,7 +219,6 @@ public class GameManager : MonoBehaviour
         int count = PlayerPrefs.GetInt(key, 0);
         PlayerPrefs.SetInt(key, count + 1);
 
-        // [추가] 키 목록 저장
         string keyList = PlayerPrefs.GetString("FishKeys", "");
         if (!keyList.Contains(key))
         {
@@ -240,7 +229,6 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    // [추가] 전체 물고기 판매
     public void SellAllFish()
     {
         string keyList = PlayerPrefs.GetString("FishKeys", "");
@@ -252,7 +240,7 @@ public class GameManager : MonoBehaviour
         foreach (string key in keys)
         {
             int count = PlayerPrefs.GetInt(key, 0);
-            string[] parts = key.Split('_');  // "Fish_멸치_Small"
+            string[] parts = key.Split('_');
             if (parts.Length == 3)
             {
                 string size = parts[2];
@@ -266,7 +254,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        PlayerPrefs.DeleteKey("FishKeys"); // 키 목록도 초기화
+        PlayerPrefs.DeleteKey("FishKeys");
         AddGold(totalGold);
         PlayerPrefs.Save();
 
@@ -328,6 +316,9 @@ public class GameManager : MonoBehaviour
         playerExp = PlayerPrefs.GetInt("PlayerExp", 0);
         maxExp = CalculateMaxExp(playerLevel);
         playerGold = PlayerPrefs.GetInt("PlayerGold", 0);
+
+        rodSelection = PlayerPrefs.GetInt("RodSelection", 1); // [추가]
+
         UpdateGoldUI();
     }
 
@@ -337,6 +328,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("PlayerLevel", playerLevel);
         PlayerPrefs.SetInt("PlayerExp", playerExp);
         PlayerPrefs.SetInt("PlayerGold", playerGold);
+        PlayerPrefs.SetInt("RodSelection", rodSelection); // [추가]
         PlayerPrefs.Save();
     }
 }

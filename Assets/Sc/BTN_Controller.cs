@@ -24,7 +24,7 @@ public class BTN_Controller : MonoBehaviour
 
     [Header("버킷 알림 및 플레이어 스탯")]
     public GameObject bucketFull;
-    public Player_Stats playerStats;
+    public GameManager gamemanager;
 
     void Start()
     {
@@ -58,7 +58,7 @@ public class BTN_Controller : MonoBehaviour
             HandleEscapeInput();
         }
 
-        CheckBucketFull();
+        
     }
 
     void HandleEscapeInput()
@@ -179,9 +179,9 @@ public class BTN_Controller : MonoBehaviour
         }
     }
 
-    void CheckBucketFull()
+    /*void CheckBucketFull()
     {
-        if (playerStats == null || bucketFull == null) return;
+        if (gamemanager == null || bucketFull == null) return;
 
         bool hasFish = false;
         foreach (Text fishText in playerStats.fishCountTexts)
@@ -195,12 +195,12 @@ public class BTN_Controller : MonoBehaviour
 
         bucketFull.SetActive(hasFish);
     }
-
+    */
     void SellAllFish()
     {
-        if (playerStats != null)
+        if (gamemanager != null)
         {
-            playerStats.SellAllFish();
+            gamemanager.SellAllFish();
             StartCoroutine(ActivateBucketAndPlayAnimation());
         }
     }
@@ -219,15 +219,12 @@ public class BTN_Controller : MonoBehaviour
 
     void SaveAndExit()
     {
-        if (playerStats != null)
+        if (gamemanager != null)
         {
-            playerStats.SaveAllPlayerData();
+            gamemanager.SavePlayerData();
             Debug.Log("Player data saved successfully.");
         }
-        else
-        {
-            Debug.LogError("Player_Stats not found!");
-        }
+        
 
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;

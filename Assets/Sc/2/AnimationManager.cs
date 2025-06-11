@@ -12,9 +12,6 @@ public class AnimationManager : MonoBehaviour
         if (characterAnimator != null)
             characterAnimator.SetTrigger("Reset");
 
-        if (fishAnimator != null)
-            fishAnimator.SetTrigger("Reset");
-
         if (rodAnimator != null)
             rodAnimator.SetTrigger("Reset");
     }
