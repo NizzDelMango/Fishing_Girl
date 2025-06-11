@@ -2939,7 +2939,7 @@ MonoBehaviour:
   bucketFullButton: {fileID: 109452782}
   saveExitButton: {fileID: 1976046029}
   bucketFull: {fileID: 109452778}
-  playerStats: {fileID: 1424694310}
+  gamemanager: {fileID: 0}
 --- !u!1 &343189254
 GameObject:
   m_ObjectHideFlags: 0
@@ -4369,8 +4369,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 704e59741fd696a4aa654e582e1802c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterAnimator: {fileID: 782300462}
-  triggerName: Touched
 --- !u!114 &569153056
 MonoBehaviour:
   m_ObjectHideFlags: 0
