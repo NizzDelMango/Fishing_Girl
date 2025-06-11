@@ -280,15 +280,26 @@ public class GameManager : MonoBehaviour
     {
         int[] expTable = new int[]
         {
-            10, 25, 50, 80, 115, 150, 200, 255, 320, 400,
-            500, 610, 750, 1000, 1500, 2800, 4200, 5800, 7000, 9000,
-            11000, 13500, 16500, 20000, 25000, 30000, 36000, 43000, 50000
+        10, 25, 50, 80, 115, 150, 200, 255, 320, 400,
+        500, 610, 750, 1000, 1500, 2800, 4200, 5800, 7000, 9000,
+        11000, 13500, 16500, 20000, 25000, 30000, 36000, 43000, 50000
         };
 
         if (level >= 1 && level <= expTable.Length)
+        {
             return expTable[level - 1];
-
-        return expTable[expTable.Length - 1];
+        }
+        else if (level > expTable.Length && level <= 60)
+        {
+            int lastExp = expTable[expTable.Length - 1]; // 30레벨의 경험치: 50000
+            int additionalLevel = level - expTable.Length;
+            return lastExp + (additionalLevel * 10000);  // 31레벨부터는 +10000씩 증가
+        }
+        else
+        {
+            // 60레벨 이상이면 마지막 값(60레벨 기준 값) 고정
+            return 50000 + (30 * 10000);  // 60레벨: 350000
+        }
     }
 
     public void UpdatePlayerUI()
@@ -298,6 +309,8 @@ public class GameManager : MonoBehaviour
             expSlider.maxValue = maxExp;
             expSlider.value = playerExp;
         }
+        if (expText != null)
+            expText.text = $"{playerExp} / {maxExp}";
 
         if (expText != null)
             expText.text = $"{playerExp} / {maxExp}";
