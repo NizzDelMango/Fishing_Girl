@@ -3,9 +3,10 @@ using UnityEngine.UI;
 
 public class StoreRodButtonHandler : MonoBehaviour
 {
-    public int rodIndex;                  // ³¬½Ë´ë ¹øÈ£ (1~4)
-    public bool isAdRequired = false;     // ±¤°í º¸»ó ÇÊ¿ä ¿©ºÎ
-    public GameManager gameManager;       // ³¬½Ë´ë Àû¿ë¿ë
+    public int rodIndex;                    // ³¬½Ë´ë ¹øÈ£ (1~4)
+    public int rodPrice = 100;              // ³¬½Ë´ë °¡°Ý (°ñµå)
+    public bool isAdRequired = false;       // ±¤°í º¸»ó ÇÊ¿ä ¿©ºÎ
+    public GameManager gameManager;         // GameManager ÂüÁ¶
 
     void Start()
     {
@@ -20,28 +21,55 @@ public class StoreRodButtonHandler : MonoBehaviour
             return;
         }
 
+        // ÀÌ¹Ì ±¸¸ÅÇß´ÂÁö È®ÀÎ
+        if (IsRodPurchased())
+        {
+            Debug.Log($"ÀÌ¹Ì ±¸¸ÅÇÑ {rodIndex}¹ø ³¬½Ë´ëÀÔ´Ï´Ù.");
+            EquipRod();  // ÀåÂø¸¸ Çã¿ë
+            return;
+        }
+
         if (isAdRequired)
         {
-            // ±¤°í ½ÃÃ» ÈÄ ³¬½Ë´ë Áö±Þ
+            // ±¤°í º¸»ó ³¬½Ë´ë
             AdManager.Instance.ShowRewardedAd(() =>
             {
+                SaveRodPurchase();   // ±¤°í º» ÈÄ ±¸¸Å Ã³¸®
                 EquipRod();
                 Debug.Log($"[±¤°í º¸»ó] {rodIndex}¹ø ³¬½Ë´ë ÀåÂø ¿Ï·á");
             });
         }
         else
         {
-            // ¹Ù·Î ³¬½Ë´ë ÀåÂø
-            EquipRod();
-            Debug.Log($"{rodIndex}¹ø ³¬½Ë´ë ÀåÂø ¿Ï·á");
+            // °ñµå·Î ±¸¸ÅÇÏ´Â ³¬½Ë´ë
+            if (gameManager.playerGold >= rodPrice)
+            {
+                gameManager.playerGold -= rodPrice;
+                SaveRodPurchase();   // ±¸¸Å Ã³¸®
+                EquipRod();
+                Debug.Log($"{rodIndex}¹ø ³¬½Ë´ë ±¸¸Å ¹× ÀåÂø ¿Ï·á");
+            }
+            else
+            {
+                Debug.Log("°ñµå°¡ ºÎÁ·ÇÏ¿© ³¬½Ë´ë¸¦ ±¸¸ÅÇÒ ¼ö ¾ø½À´Ï´Ù.");
+            }
         }
     }
 
     void EquipRod()
     {
         gameManager.rodSelection = rodIndex;
+        gameManager.SendMessage("ApplyRodLayer");  // ¼±ÅÃ ¹Ý¿µ
+    }
 
-        // Áï½Ã ¹Ý¿µÀ» À§ÇØ ApplyRodLayer È£Ãâ
-        gameManager.SendMessage("ApplyRodLayer");
+    bool IsRodPurchased()
+    {
+        return PlayerPrefs.GetInt("RodPurchased_" + rodIndex, 0) == 1;
+    }
+
+    void SaveRodPurchase()
+    {
+        PlayerPrefs.SetInt("RodPurchased_" + rodIndex, 1);
+        PlayerPrefs.Save();
     }
 }

@@ -44,6 +44,35 @@ public class GameManager : MonoBehaviour
     public Text levelText;
     public TMP_Text nameText;
 
+    [Header("Player Currency")]
+    public int playerGold = 0;
+    public Text goldText;  // UI 연결 필요
+
+
+    public bool SpendGold(int amount)
+    {
+        if (playerGold >= amount)
+        {
+            playerGold -= amount;
+            UpdateGoldUI();
+            SavePlayerData();  // 저장도 함께
+            return true;
+        }
+        return false;
+    }
+
+    public void AddGold(int amount)
+    {
+        playerGold += amount;
+        UpdateGoldUI();
+        SavePlayerData();
+    }
+
+    public void UpdateGoldUI()
+    {
+        if (goldText != null)
+            goldText.text = $"{playerGold} G";
+    }
     private void Awake()
     {
         if (Instance == null)
@@ -63,6 +92,7 @@ public class GameManager : MonoBehaviour
         ApplyRodLayer();
         ApplyCharactorLayer();
         UpdatePlayerUI();
+        UpdateGoldUI();
     }
 
     void Update()
@@ -254,6 +284,8 @@ public class GameManager : MonoBehaviour
         playerLevel = PlayerPrefs.GetInt("PlayerLevel", 1);
         playerExp = PlayerPrefs.GetInt("PlayerExp", 0);
         maxExp = CalculateMaxExp(playerLevel);
+        playerGold = PlayerPrefs.GetInt("PlayerGold", 0);
+        UpdateGoldUI();
 
         Debug.Log($"플레이어 데이터 불러옴: {playerName}, 레벨 {playerLevel}, 경험치 {playerExp}/{maxExp}");
     }
@@ -264,7 +296,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("PlayerLevel", playerLevel);
         PlayerPrefs.SetInt("PlayerExp", playerExp);
         PlayerPrefs.Save();
-
+        PlayerPrefs.SetInt("PlayerGold", playerGold);
         Debug.Log("플레이어 데이터 저장됨.");
     }
 }

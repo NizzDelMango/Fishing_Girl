@@ -1208,6 +1208,8 @@ MonoBehaviour:
   expText: {fileID: 692582573}
   levelText: {fileID: 860561523}
   nameText: {fileID: 2085704395}
+  playerGold: 50
+  goldText: {fileID: 1663000080}
 --- !u!4 &171842780
 Transform:
   m_ObjectHideFlags: 0
@@ -2346,6 +2348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rodIndex: 3
+  rodPrice: 50000
   isAdRequired: 0
   gameManager: {fileID: 171842779}
 --- !u!1 &301496748
@@ -5352,6 +5355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rodIndex: 4
+  rodPrice: 0
   isAdRequired: 1
   gameManager: {fileID: 171842779}
 --- !u!1 &712231325
@@ -12744,6 +12748,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rodIndex: 1
+  rodPrice: 100
   isAdRequired: 0
   gameManager: {fileID: 171842779}
 --- !u!1 &1535415438
@@ -13098,6 +13103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rodIndex: 2
+  rodPrice: 10000
   isAdRequired: 0
   gameManager: {fileID: 171842779}
 --- !u!1 &1569551349
