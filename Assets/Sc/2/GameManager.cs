@@ -175,9 +175,9 @@ public class GameManager : MonoBehaviour
 
     string GetRandomSizeTrigger()
     {
-        string[] sizeTriggers = { "Small", "Medium", "Large" };
-        string size = sizeTriggers[UnityEngine.Random.Range(0, sizeTriggers.Length)];
+        string size = GetSizeByPlayerLevel(playerLevel);
         fishAnimator.SetTrigger(size);
+
         string fish = GetRandomFish();
         SaveCaughtFish(fish, size);
 
@@ -186,31 +186,171 @@ public class GameManager : MonoBehaviour
             "Small" => 1,
             "Medium" => 3,
             "Large" => 5,
-            _ => 5
+            _ => 1
         };
 
         AddExp(exp);
         return size;
     }
 
-    string GetRandomFish()
+    string GetSizeByPlayerLevel(int level)
     {
-        int[] weights = { 20, 18, 16, 14, 12, 10, 8, 6, 5, 4, 3, 2 };
-        int totalWeight = 0;
-        foreach (int w in weights)
-            totalWeight += w;
+        float rand = UnityEngine.Random.Range(0f, 100f);
 
-        int rand = UnityEngine.Random.Range(0, totalWeight);
-        int cumulative = 0;
-
-        for (int i = 0; i < weights.Length; i++)
+        if (level == 1)
         {
-            cumulative += weights[i];
-            if (rand < cumulative)
-                return fishNames[i];
+            if (rand < 99f) return "Small";
+            else return "Medium";
+        }
+        else if (level == 2)
+        {
+            if (rand < 98f) return "Small";
+            else if (rand < 100f) return "Medium";
+            else return "Large";
+        }
+        else if (level == 3)
+        {
+            if (rand < 97f) return "Small";
+            else if (rand < 100f) return "Medium";
+            else return "Large";
+        }
+        else if (level == 4 || level == 5)
+        {
+            if (rand < 97.9f) return "Small";
+            else if (rand < 99.9f) return "Medium";
+            else return "Large";
+        }
+        else if (level == 6)
+        {
+            if (rand < 96.9f) return "Small";
+            else if (rand < 99.9f) return "Medium";
+            else return "Large";
+        }
+        else if (level == 7)
+        {
+            if (rand < 95.9f) return "Small";
+            else if (rand < 99.9f) return "Medium";
+            else return "Large";
+        }
+        else if (level == 8)
+        {
+            if (rand < 94.9f) return "Small";
+            else if (rand < 99.9f) return "Medium";
+            else return "Large";
+        }
+        else if (level == 9)
+        {
+            if (rand < 93.9f) return "Small";
+            else if (rand < 98.9f) return "Medium";
+            else return "Large";
+        }
+        else if (level == 10)
+        {
+            if (rand < 92.9f) return "Small";
+            else if (rand < 98.9f) return "Medium";
+            else return "Large";
+        }
+        else if (level <= 13)
+        {
+            if (rand < 90f) return "Small";
+            else if (rand < 98f) return "Medium";
+            else return "Large";
+        }
+        else if (level == 14)
+        {
+            if (rand < 80f) return "Small";
+            else if (rand < 95f) return "Medium";
+            else return "Large";
+        }
+        else if (level <= 17)
+        {
+            if (rand < 70f) return "Small";
+            else if (rand < 95f) return "Medium";
+            else return "Large";
+        }
+        else if (level <= 19)
+        {
+            if (rand < 65f) return "Small";
+            else if (rand < 90f) return "Medium";
+            else return "Large";
+        }
+        else if (level == 20)
+        {
+            if (rand < 64f) return "Small";
+            else if (rand < 89f) return "Medium";
+            else return "Large";
+        }
+        else if (level == 21)
+        {
+            if (rand < 63f) return "Small";
+            else if (rand < 88f) return "Medium";
+            else return "Large";
+        }
+        else if (level == 22)
+        {
+            if (rand < 60f) return "Small";
+            else if (rand < 88f) return "Medium";
+            else return "Large";
+        }
+        else if (level == 23)
+        {
+            if (rand < 58f) return "Small";
+            else if (rand < 88f) return "Medium";
+            else return "Large";
+        }
+        else if (level == 24)
+        {
+            if (rand < 55f) return "Small";
+            else if (rand < 87f) return "Medium";
+            else return "Large";
+        }
+        else if (level == 25)
+        {
+            if (rand < 50f) return "Small";
+            else if (rand < 85f) return "Medium";
+            else return "Large";
+        }
+        else if (level == 26)
+        {
+            if (rand < 45f) return "Small";
+            else if (rand < 83f) return "Medium";
+            else return "Large";
+        }
+        else if (level == 27)
+        {
+            if (rand < 60f) return "Small";
+            else if (rand < 80f) return "Medium";
+            else return "Large";
+        }
+        else if (level == 28)
+        {
+            if (rand < 35f) return "Small";
+            else if (rand < 77f) return "Medium";
+            else return "Large";
+        }
+        else if (level == 29)
+        {
+            if (rand < 30f) return "Small";
+            else if (rand < 75f) return "Medium";
+            else return "Large";
+        }
+        else if (level == 30)
+        {
+            if (rand < 25f) return "Small";
+            else if (rand < 75f) return "Medium";
+            else return "Large";
         }
 
-        return fishNames[0];
+        return "Small";
+    }
+
+
+
+
+    string GetRandomFish()
+    {
+        int index = UnityEngine.Random.Range(0, fishNames.Length);
+        return fishNames[index];
     }
 
     void SaveCaughtFish(string name, string size)

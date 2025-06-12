@@ -25,6 +25,7 @@ public class BTN_Controller : MonoBehaviour
     [Header("버킷 알림 및 플레이어 스탯")]
     public GameObject bucketFull;
     public GameManager gamemanager;
+    
 
     void Start()
     {
