@@ -1,33 +1,58 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class SellFishHandler : MonoBehaviour, IPointerClickHandler
+public class SellFishHandler : MonoBehaviour
 {
-    private Animator animator;
+    private Animator bucketAnimator;
+    private GameManager gameManager;
 
+    [Header("패널")]
+    public GameObject Empty;
+    public GameObject Full;
     void Start()
     {
-        animator = GetComponent<Animator>();
+        // 패널 상태 초기화
+        Empty.SetActive(true);
+        Full.SetActive(false);
+
+        // 부모 객체에서 Animator 가져오기
+        bucketAnimator = this.gameObject.GetComponent<Animator>();
+
+        // GameManager 가져오기 "SellAllFishi() 사용하기 위함"
+        gameManager = FindObjectOfType<GameManager>();
     }
 
-    // 버튼 클릭 이벤트에서 호출
-    public void PlayTouchAnimation()
+    public void PlayBucketAnimation() // 애니메이션 동작 로직
     {
-        if (animator != null)
+        if (!this.gameObject.activeSelf)
         {
-            animator.SetTrigger("Bucket_Touched");
+            // 꺼져 있으면 켜기
+            this.gameObject.SetActive(true);
+        }
+        else
+        {
+            // 켜져 있으면 애니메이션 실행 후 꺼짐
+            bucketAnimator.SetTrigger("Bucket_Touched");
+            StartCoroutine(DisableAfterAnimation());
         }
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void SellAllFish()
     {
-        // 만약에 전체 영역 클릭도 동작하게 하고 싶다면 사용
-        PlayTouchAnimation();
+        if (gameManager != null)
+        {
+            gameManager.SellAllFish();  // GameManager.cs 안에 있는 SellAllFish 호출
+        }
+
+        // 애니메이션 실행 후 꺼짐
+        bucketAnimator.SetTrigger("Bucket_Touched");
+        StartCoroutine(DisableAfterAnimation());
     }
 
-    // 애니메이션 이벤트에서 호출될 함수
-    public void OnAnimationEnd()
+    private System.Collections.IEnumerator DisableAfterAnimation()
     {
-        gameObject.SetActive(false);
+        // 애니메이션 길이만큼 대기 후 꺼짐
+        float animTime = bucketAnimator.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(animTime);
+        this.gameObject.SetActive(false);
     }
 }

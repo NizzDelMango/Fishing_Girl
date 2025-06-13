@@ -866,7 +866,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -1634}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &103233086
@@ -998,6 +998,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2eef0e8a97e0f4bbb0737b6b06ff4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Empty: {fileID: 0}
+  Full: {fileID: 0}
 --- !u!1 &109452778
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,7 +1051,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1118,8 +1120,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 171842779}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 103233088}
+        m_TargetAssemblyTypeName: SellFishHandler, Assembly-CSharp
         m_MethodName: SellAllFish
         m_Mode: 1
         m_Arguments:
@@ -6499,7 +6501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9646,9 +9648,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 171842779}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SellAllFish
+      - m_Target: {fileID: 103233088}
+        m_TargetAssemblyTypeName: SellFishHandler, Assembly-CSharp
+        m_MethodName: PlayBucketAnimation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
