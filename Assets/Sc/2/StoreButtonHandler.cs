@@ -1,12 +1,12 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 
 public class StoreRodButtonHandler : MonoBehaviour
 {
-    public int rodIndex;                    // ³¬½Ë´ë ¹øÈ£ (1~4)
-    public int rodPrice = 100;              // ³¬½Ë´ë °¡°İ (°ñµå)
-    public bool isAdRequired = false;       // ±¤°í º¸»ó ÇÊ¿ä ¿©ºÎ
-    public GameManager gameManager;         // GameManager ÂüÁ¶
+    public int rodIndex;                    // ë‚šì‹¯ëŒ€ ë²ˆí˜¸ (1~4)
+    public int rodPrice = 100;              // ë‚šì‹¯ëŒ€ ê°€ê²© (ê³¨ë“œ)
+    public bool isAdRequired = false;       // ê´‘ê³  ë³´ìƒ í•„ìš” ì—¬ë¶€
+    public GameManager gameManager;         // GameManager ì°¸ì¡°
 
     void Start()
     {
@@ -17,41 +17,40 @@ public class StoreRodButtonHandler : MonoBehaviour
     {
         if (gameManager == null)
         {
-            Debug.LogWarning("GameManager°¡ ¿¬°áµÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+            Debug.LogWarning("GameManagerê°€ ì—°ê²°ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
             return;
         }
 
-        // ÀÌ¹Ì ±¸¸ÅÇß´ÂÁö È®ÀÎ
+        // ì´ë¯¸ êµ¬ë§¤í–ˆëŠ”ì§€ í™•ì¸
         if (IsRodPurchased())
         {
-            Debug.Log($"ÀÌ¹Ì ±¸¸ÅÇÑ {rodIndex}¹ø ³¬½Ë´ëÀÔ´Ï´Ù.");
-            EquipRod();  // ÀåÂø¸¸ Çã¿ë
+            Debug.Log($"ì´ë¯¸ êµ¬ë§¤í•œ {rodIndex}ë²ˆ ë‚šì‹¯ëŒ€ì…ë‹ˆë‹¤.");
+            EquipRod();  // ì¥ì°©ë§Œ í—ˆìš©
             return;
         }
 
         if (isAdRequired)
         {
-            // ±¤°í º¸»ó ³¬½Ë´ë
+            // ê´‘ê³  ë³´ìƒ ë‚šì‹¯ëŒ€
             AdManager.Instance.ShowRewardedAd(() =>
             {
-                SaveRodPurchase();   // ±¤°í º» ÈÄ ±¸¸Å Ã³¸®
+                SaveRodPurchase();   // ê´‘ê³  ë³¸ í›„ êµ¬ë§¤ ì²˜ë¦¬
                 EquipRod();
-                Debug.Log($"[±¤°í º¸»ó] {rodIndex}¹ø ³¬½Ë´ë ÀåÂø ¿Ï·á");
+                Debug.Log($"[ê´‘ê³  ë³´ìƒ] {rodIndex}ë²ˆ ë‚šì‹¯ëŒ€ ì¥ì°© ì™„ë£Œ");
             });
         }
         else
         {
-            // °ñµå·Î ±¸¸ÅÇÏ´Â ³¬½Ë´ë
-            if (gameManager.playerGold >= rodPrice)
+            // ê³¨ë“œë¡œ êµ¬ë§¤í•˜ëŠ” ë‚šì‹¯ëŒ€
+            if (gameManager.SpendGold(rodPrice))  //  ì—¬ê¸° ìˆ˜ì •ë¨
             {
-                gameManager.playerGold -= rodPrice;
-                SaveRodPurchase();   // ±¸¸Å Ã³¸®
+                SaveRodPurchase();   // êµ¬ë§¤ ì²˜ë¦¬
                 EquipRod();
-                Debug.Log($"{rodIndex}¹ø ³¬½Ë´ë ±¸¸Å ¹× ÀåÂø ¿Ï·á");
+                Debug.Log($"{rodIndex}ë²ˆ ë‚šì‹¯ëŒ€ êµ¬ë§¤ ë° ì¥ì°© ì™„ë£Œ");
             }
             else
             {
-                Debug.Log("°ñµå°¡ ºÎÁ·ÇÏ¿© ³¬½Ë´ë¸¦ ±¸¸ÅÇÒ ¼ö ¾ø½À´Ï´Ù.");
+                Debug.Log("ê³¨ë“œê°€ ë¶€ì¡±í•˜ì—¬ ë‚šì‹¯ëŒ€ë¥¼ êµ¬ë§¤í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
             }
         }
     }
@@ -59,7 +58,7 @@ public class StoreRodButtonHandler : MonoBehaviour
     void EquipRod()
     {
         gameManager.rodSelection = rodIndex;
-        gameManager.SendMessage("ApplyRodLayer");  // ¼±ÅÃ ¹İ¿µ
+        gameManager.SendMessage("ApplyRodLayer");  // ì„ íƒ ë°˜ì˜
     }
 
     bool IsRodPurchased()

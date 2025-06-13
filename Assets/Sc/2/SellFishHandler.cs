@@ -21,20 +21,20 @@ public class SellFishHandler : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
     }
 
-    public void PlayBucketAnimation() // 애니메이션 동작 로직
-    {
-        if (!this.gameObject.activeSelf)
-        {
-            // 꺼져 있으면 켜기
-            this.gameObject.SetActive(true);
-        }
-        else
-        {
-            // 켜져 있으면 애니메이션 실행 후 꺼짐
-            bucketAnimator.SetTrigger("Bucket_Touched");
-            StartCoroutine(DisableAfterAnimation());
-        }
-    }
+    //public void PlayBucketAnimation() // 애니메이션 동작 로직
+    //{
+    //    if (!this.gameObject.activeSelf)
+    //    {
+    //        // 꺼져 있으면 켜기
+    //        this.gameObject.SetActive(true);
+    //    }
+    //    else
+    //    {
+    //        // 켜져 있으면 애니메이션 실행 후 꺼짐
+    //        bucketAnimator.SetTrigger("Bucket_Touched");
+    //        StartCoroutine(DisableAfterAnimation());
+    //    }
+    //}
 
     public void SellAllFish()
     {
@@ -43,16 +43,16 @@ public class SellFishHandler : MonoBehaviour
             gameManager.SellAllFish();  // GameManager.cs 안에 있는 SellAllFish 호출
         }
 
-        // 애니메이션 실행 후 꺼짐
-        bucketAnimator.SetTrigger("Bucket_Touched");
-        StartCoroutine(DisableAfterAnimation());
+        //// 애니메이션 실행 후 꺼짐
+        //bucketAnimator.SetTrigger("Bucket_Touched");
+        //StartCoroutine(DisableAfterAnimation());
     }
 
-    private System.Collections.IEnumerator DisableAfterAnimation()
-    {
-        // 애니메이션 길이만큼 대기 후 꺼짐
-        float animTime = bucketAnimator.GetCurrentAnimatorStateInfo(0).length;
-        yield return new WaitForSeconds(animTime);
-        this.gameObject.SetActive(false);
-    }
+    //private System.Collections.IEnumerator DisableAfterAnimation()
+    //{
+    //    // 애니메이션 길이만큼 대기 후 꺼짐
+    //    float animTime = bucketAnimator.GetCurrentAnimatorStateInfo(0).length;
+    //    yield return new WaitForSeconds(animTime);
+    //    this.gameObject.SetActive(false);
+    //}
 }

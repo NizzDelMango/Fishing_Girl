@@ -998,8 +998,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2eef0e8a97e0f4bbb0737b6b06ff4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Empty: {fileID: 0}
-  Full: {fileID: 0}
+  Empty: {fileID: 792201847}
+  Full: {fileID: 109452778}
 --- !u!1 &109452778
 GameObject:
   m_ObjectHideFlags: 0
@@ -2662,6 +2662,7 @@ GameObject:
   - component: {fileID: 332406572}
   - component: {fileID: 332406571}
   - component: {fileID: 332406570}
+  - component: {fileID: 332406573}
   m_Layer: 5
   m_Name: Korean-Air
   m_TagString: Untagged
@@ -2772,6 +2773,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 332406568}
   m_CullTransparentMesh: 1
+--- !u!114 &332406573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332406568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7140abdf8ea7f73499ac9d081006a4cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: Korea_Summer
+  unlockCost: 0
 --- !u!1 &335859642
 GameObject:
   m_ObjectHideFlags: 0
@@ -9650,7 +9665,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 103233088}
         m_TargetAssemblyTypeName: SellFishHandler, Assembly-CSharp
-        m_MethodName: PlayBucketAnimation
+        m_MethodName: SellAllFish
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13497,7 +13512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rodIndex: 1
-  rodPrice: 100
+  rodPrice: 0
   isAdRequired: 0
   gameManager: {fileID: 171842779}
 --- !u!1 &1535415438
@@ -14863,6 +14878,7 @@ GameObject:
   - component: {fileID: 1695199684}
   - component: {fileID: 1695199683}
   - component: {fileID: 1695199682}
+  - component: {fileID: 1695199685}
   m_Layer: 5
   m_Name: Japan-Air
   m_TagString: Untagged
@@ -14973,6 +14989,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1695199680}
   m_CullTransparentMesh: 1
+--- !u!114 &1695199685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695199680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7140abdf8ea7f73499ac9d081006a4cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: Test
+  unlockCost: 500000
 --- !u!1 &1697519434
 GameObject:
   m_ObjectHideFlags: 0
@@ -15903,6 +15933,7 @@ GameObject:
   - component: {fileID: 1806761716}
   - component: {fileID: 1806761715}
   - component: {fileID: 1806761714}
+  - component: {fileID: 1806761717}
   m_Layer: 5
   m_Name: Buy_BTN
   m_TagString: Untagged
@@ -16012,6 +16043,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1806761712}
   m_CullTransparentMesh: 1
+--- !u!114 &1806761717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806761712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76427b1350266b843b4f9ea58f98ac67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outfit2Price: 100
+  shopPanel: {fileID: 8089992871050115045}
 --- !u!1 &1816824415
 GameObject:
   m_ObjectHideFlags: 0
@@ -21775,7 +21820,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6622287875030715278
 RectTransform:
   m_ObjectHideFlags: 0

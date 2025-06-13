@@ -50,12 +50,13 @@ public class GameManager : MonoBehaviour
     public int playerGold = 0;
     public Text goldText;
 
-    private Dictionary<string, int> fishPrices = new Dictionary<string, int>()
-    {
-        { "Small", 10 },
-        { "Medium", 20 },
-        { "Large", 40 }
-    };
+    public Dictionary<string, int> fishPrices = new Dictionary<string, int>()
+{
+    { "Small", 10 },
+    { "Medium", 30 },
+    { "Large", 50 }
+};
+
 
     public bool SpendGold(int amount)
     {
@@ -469,7 +470,7 @@ public class GameManager : MonoBehaviour
         playerExp = PlayerPrefs.GetInt("PlayerExp", 0);
         maxExp = CalculateMaxExp(playerLevel);
         playerGold = PlayerPrefs.GetInt("PlayerGold", 0);
-
+        charactorSelection = PlayerPrefs.GetInt("CharactorSelection", 1);
         rodSelection = PlayerPrefs.GetInt("RodSelection", 1); // [추가]
 
         UpdateGoldUI();
@@ -482,6 +483,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("PlayerExp", playerExp);
         PlayerPrefs.SetInt("PlayerGold", playerGold);
         PlayerPrefs.SetInt("RodSelection", rodSelection); // [추가]
+        PlayerPrefs.SetInt("CharactorSelection", charactorSelection);
         PlayerPrefs.Save();
     }
 }
