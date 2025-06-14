@@ -4,6 +4,7 @@ using TMPro;
 using System;
 using System.Collections.Generic;
 
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -103,6 +104,14 @@ public class GameManager : MonoBehaviour
         ApplyCharactorLayer();
         UpdatePlayerUI();
         UpdateGoldUI();
+        if (fishingRodAnimator == null)
+        {
+            GameObject rodObj = GameObject.Find("FishingRod");
+            if (rodObj != null)
+            {
+                fishingRodAnimator = rodObj.GetComponent<Animator>();
+            }
+        }
     }
 
     void Update()

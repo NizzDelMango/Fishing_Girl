@@ -2810,8 +2810,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7140abdf8ea7f73499ac9d081006a4cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Korea_Summer
+  regionName: korea
   unlockCost: 0
+  regionBackground: {fileID: 21300000, guid: df43595bf89770243aa26c39ee78247c, type: 3}
+  backgroundImage: {fileID: 569153053}
 --- !u!1 &335859642
 GameObject:
   m_ObjectHideFlags: 0
@@ -15083,8 +15085,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7140abdf8ea7f73499ac9d081006a4cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Test
+  regionName: japan
   unlockCost: 500000
+  regionBackground: {fileID: 21300000, guid: 345bdb1587a0f024f9e47dad80b53b52, type: 3}
+  backgroundImage: {fileID: 569153053}
 --- !u!1 &1697519434
 GameObject:
   m_ObjectHideFlags: 0
@@ -16137,7 +16141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76427b1350266b843b4f9ea58f98ac67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outfit2Price: 100
+  outfit2Price: 0
   shopPanel: {fileID: 8089992871050115045}
 --- !u!1 &1816824415
 GameObject:

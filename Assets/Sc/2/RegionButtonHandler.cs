@@ -1,11 +1,12 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class RegionButtonHandler : MonoBehaviour
 {
-    public string sceneName;          // 이동할 씬 이름
-    public int unlockCost = 100;      // 해당 지역 해금 비용
+    public string regionName;                 // 지역 이름 (예: "Sea", "Forest")
+    public int unlockCost = 0;              // 지역 해금 비용
+    public Sprite regionBackground;           // 바꿀 배경 이미지
+    public Image backgroundImage;             // 변경할 대상 이미지 (직접 드래그로 할당)
 
     private Button regionButton;
     private GameManager gameManager;
@@ -17,6 +18,11 @@ public class RegionButtonHandler : MonoBehaviour
 
         gameManager = GameManager.Instance;
 
+        if (backgroundImage == null)
+        {
+            Debug.LogError("backgroundImage가 할당되지 않았습니다. 인스펙터에서 연결해주세요.");
+        }
+
         if (gameManager == null)
         {
             Debug.LogError("GameManager가 씬에 존재하지 않습니다.");
@@ -25,25 +31,19 @@ public class RegionButtonHandler : MonoBehaviour
 
     void OnRegionButtonClicked()
     {
-        string currentScene = SceneManager.GetActiveScene().name;
-
-        if (sceneName == currentScene)
-        {
-            Debug.Log("이미 현재 지역에 있습니다.");
-            return;
-        }
+        if (backgroundImage == null || regionBackground == null) return;
 
         if (IsRegionUnlocked())
         {
-            LoadRegion();
+            ChangeBackground();
         }
         else
         {
             if (gameManager.SpendGold(unlockCost))
             {
                 UnlockRegion();
-                LoadRegion();
-                Debug.Log($"{sceneName} 지역이 해금되고 이동했습니다.");
+                ChangeBackground();
+                Debug.Log($"{regionName} 지역이 해금되고 배경이 변경되었습니다.");
             }
             else
             {
@@ -54,17 +54,17 @@ public class RegionButtonHandler : MonoBehaviour
 
     bool IsRegionUnlocked()
     {
-        return PlayerPrefs.GetInt("RegionUnlocked_" + sceneName, 0) == 1;
+        return PlayerPrefs.GetInt("RegionUnlocked_" + regionName, 0) == 1;
     }
 
     void UnlockRegion()
     {
-        PlayerPrefs.SetInt("RegionUnlocked_" + sceneName, 1);
+        PlayerPrefs.SetInt("RegionUnlocked_" + regionName, 1);
         PlayerPrefs.Save();
     }
 
-    void LoadRegion()
+    void ChangeBackground()
     {
-        SceneManager.LoadScene(sceneName);
+        backgroundImage.sprite = regionBackground;
     }
 }
