@@ -4,19 +4,32 @@ using UnityEngine.UI;
 public class RegionButtonHandler : MonoBehaviour
 {
     public string regionName;                 // 지역 이름 (예: "Sea", "Forest")
-    public int unlockCost = 0;              // 지역 해금 비용
+    public int unlockCost = 0;                // 지역 해금 비용
     public Sprite regionBackground;           // 바꿀 배경 이미지
     public Image backgroundImage;             // 변경할 대상 이미지 (직접 드래그로 할당)
 
     private Button regionButton;
     private GameManager gameManager;
 
+    void Awake()
+    {
+        gameManager = GameManager.Instance;
+
+        // 마지막 선택된 지역 이름 가져오기
+        string lastRegion = PlayerPrefs.GetString("LastSelectedRegion", "");
+
+        // 현재 버튼이 마지막으로 선택한 지역이고, 해금된 상태라면 자동으로 배경 변경
+        if (lastRegion == regionName && IsRegionUnlocked())
+        {
+            ChangeBackground();
+            Debug.Log($"{regionName} 지역으로 자동 이동되었습니다.");
+        }
+    }
+
     void Start()
     {
         regionButton = GetComponent<Button>();
         regionButton.onClick.AddListener(OnRegionButtonClicked);
-
-        gameManager = GameManager.Instance;
 
         if (backgroundImage == null)
         {
@@ -66,5 +79,7 @@ public class RegionButtonHandler : MonoBehaviour
     void ChangeBackground()
     {
         backgroundImage.sprite = regionBackground;
+        PlayerPrefs.SetString("LastSelectedRegion", regionName); // 마지막 선택 지역 저장
+        PlayerPrefs.Save();
     }
 }

@@ -41,7 +41,7 @@ public class StartSceneManager : MonoBehaviour
         // 저장된 이름이 있다면 바로 씬 이동
         if (PlayerPrefs.HasKey("PlayerName") && PlayerPrefs.GetString("PlayerName").Length > 1)
         {
-            SceneManager.LoadScene("Korea_Summer");
+            SceneManager.LoadScene("InGame");
         }
         else
         {
@@ -70,6 +70,6 @@ public class StartSceneManager : MonoBehaviour
         PlayerPrefs.Save();
         Debug.Log("이름 저장됨: " + inputField.text);
 
-        SceneManager.LoadScene("Korea_Summer");
+        SceneManager.LoadScene("InGame");
     }
 }
