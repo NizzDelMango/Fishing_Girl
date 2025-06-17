@@ -1001,6 +1001,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Empty: {fileID: 792201847}
   Full: {fileID: 109452778}
+  childButtons:
+  - {fileID: 792201847}
+  - {fileID: 109452778}
 --- !u!225 &103233089
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -22630,7 +22633,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &8103396485389972666
 MonoBehaviour:
   m_ObjectHideFlags: 0
