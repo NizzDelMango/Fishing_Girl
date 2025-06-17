@@ -41,11 +41,21 @@ public class Menu_Manager : MonoBehaviour
     // 메뉴 열기
     public void OpenMenu()
     {
-        this.gameObject.SetActive(true);
-        Guide_Panel.SetActive(false);
-        Settings_Panel.SetActive(false);
-        Main_Panel.SetActive(true);
+        if (this.gameObject.activeSelf)
+        {
+            // 메뉴가 켜져 있으면 끔
+            this.gameObject.SetActive(false);
+        }
+        else
+        {
+            // 메뉴가 꺼져 있으면 기본(Main) 패널 켜고 전체 메뉴 켬
+            this.gameObject.SetActive(true);
+            Guide_Panel.SetActive(false);
+            Settings_Panel.SetActive(false);
+            Main_Panel.SetActive(true);
+        }
     }
+
 
     public void OpenGuide()
     {
