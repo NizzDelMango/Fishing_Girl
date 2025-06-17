@@ -6091,7 +6091,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &731361346
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16144,7 +16144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76427b1350266b843b4f9ea58f98ac67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outfit2Price: 0
   shopPanel: {fileID: 8089992871050115045}
 --- !u!1 &1816824415
 GameObject:
@@ -17900,7 +17899,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1998061965
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17929,7 +17928,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1998061964}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -22633,7 +22632,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &8103396485389972666
 MonoBehaviour:
   m_ObjectHideFlags: 0

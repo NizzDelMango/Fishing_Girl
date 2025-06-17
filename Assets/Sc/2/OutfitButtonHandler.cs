@@ -3,8 +3,7 @@ using UnityEngine.UI;
 
 public class OutfitToggleButtonHandler : MonoBehaviour
 {
-    public int outfit2Price = 100;         // 2번 의상 해금 비용
-    public GameObject shopPanel;           // 패널 닫기용 (옵션)
+    public GameObject shopPanel;           // 의상 선택 패널 닫기용
 
     private GameManager gameManager;
 
@@ -24,26 +23,24 @@ public class OutfitToggleButtonHandler : MonoBehaviour
         int current = gameManager.charactorSelection;
         int target = current == 1 ? 2 : 1;
 
+        // 2번 의상이 해금되지 않은 경우 => 광고 보고 해금
         if (target == 2 && !IsOutfitUnlocked(2))
         {
-            if (gameManager.SpendGold(outfit2Price))
+            AdManager.Instance.ShowRewardedAd(() =>
             {
                 UnlockOutfit(2);
                 ChangeOutfit(target);
-                Debug.Log("2번 의상을 해금하고 장착했습니다.");
-            }
-            else
-            {
-                Debug.Log("골드가 부족하여 2번 의상을 해금할 수 없습니다.");
-            }
+                Debug.Log("2번 의상을 광고로 해금하고 장착했습니다.");
+                ClosePanel();
+            });
         }
         else
         {
+            // 이미 해금된 경우는 그냥 의상만 변경
             ChangeOutfit(target);
             Debug.Log($"{target}번 의상 장착 완료");
+            ClosePanel();
         }
-
-        ClosePanel();
     }
 
     void ChangeOutfit(int index)
